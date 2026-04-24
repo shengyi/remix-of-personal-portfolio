@@ -609,10 +609,11 @@ function Footer() {
 }
 
 export default function Index() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background paper-grain">
       <Topbar />
-      <Hero />
+      <Hero onContact={() => setContactOpen(true)} />
       <Metrics />
       <LogoStrip />
       <Pillars />
@@ -623,6 +624,7 @@ export default function Index() {
       <Experience />
       <Contact />
       <Footer />
+      {contactOpen && <ContactForm onClose={() => setContactOpen(false)} />}
     </div>
   );
 }
