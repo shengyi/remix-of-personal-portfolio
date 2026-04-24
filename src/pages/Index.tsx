@@ -16,7 +16,7 @@ import {
   experience,
   education,
 } from "@/data/regina";
-import portrait from "@/assets/portrait-editorial.jpg";
+import { Hero } from "@/components/hero/Hero";
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
