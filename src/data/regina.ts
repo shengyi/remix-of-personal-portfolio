@@ -8,6 +8,7 @@ import docusignLogo from "@/assets/logos/docusign.png";
 import godaddyLogo from "@/assets/logos/godaddy.png";
 import natGeoLogo from "@/assets/logos/national-geographic.png";
 import googleLogo from "@/assets/logos/google.png";
+import cesLogo from "@/assets/logos/ces.png";
 
 export const profile = {
   name: "Regina Yuan",
@@ -35,6 +36,7 @@ export const logos = [
   { name: "GoDaddy", src: godaddyLogo },
   { name: "National Geographic", src: natGeoLogo },
   { name: "Google", src: googleLogo },
+  { name: "CES", src: cesLogo },
 ];
 
 export type Case = {

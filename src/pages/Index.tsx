@@ -108,15 +108,19 @@ function LogoStrip() {
       <div className="label-mono text-center mb-8 text-olive-soft">
         Brands built · brands integrated · brands advised
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-x-12 md:gap-x-20 gap-y-8 opacity-80">
+      <div className="flex flex-wrap items-center justify-center gap-x-10 md:gap-x-16 gap-y-8 opacity-80">
         {logos.map((l) => (
-          <img
+          <div
             key={l.name}
-            src={l.src}
-            alt={l.name}
-            loading="lazy"
-            className="h-7 md:h-8 w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all dark:invert dark:opacity-90"
-          />
+            className="flex items-center justify-center h-10 md:h-12"
+          >
+            <img
+              src={l.src}
+              alt={l.name}
+              loading="lazy"
+              className="max-h-full max-w-[140px] w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all dark:invert dark:opacity-90"
+            />
+          </div>
         ))}
       </div>
     </section>
