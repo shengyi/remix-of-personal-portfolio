@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowUpRight, Linkedin, Mail, FileDown, Settings2, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { profile } from "@/data/regina";
@@ -11,7 +11,6 @@ const fadeUp = {
 };
 
 type Variant = "A" | "B";
-type Palette = "warm" | "ink";
 
 /* ──────────────────────────────────────────────────────────── *
  * Headline renderer                                            *
@@ -40,7 +39,7 @@ function HeadlineLines({ headline, size }: { headline: Headline; size: "xl" | "l
 }
 
 /* ──────────────────────────────────────────────────────────── *
- * CTAs                                                         *
+ * CTAs — 2 buttons (primary + secondary) + inline résumé link  *
  * ──────────────────────────────────────────────────────────── */
 
 function CTAs({
@@ -50,71 +49,66 @@ function CTAs({
   layout?: "row" | "stack";
   onContact: () => void;
 }) {
-  const items = [
-    {
-      label: "LinkedIn",
-      href: profile.linkedin,
-      icon: Linkedin,
-      external: true as const,
-    },
-    {
-      label: "Resume",
-      href: "/regina-yuan-resume.pdf",
-      icon: FileDown,
-      external: false as const,
-      download: true as const,
-    },
-    {
-      label: "Contact",
-      onClick: onContact,
-      icon: Mail,
-    },
-  ];
+  const isStack = layout === "stack";
+
+  const primaryCls =
+    "group inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-sm border text-sm font-medium transition-all duration-200 " +
+    "bg-olive text-primary-foreground border-olive shadow-sm " +
+    "hover:bg-mustard hover:border-mustard hover:text-primary-foreground hover:shadow-md hover:-translate-y-px " +
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mustard focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+
+  const secondaryCls =
+    "group inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-sm border text-sm font-medium transition-all duration-200 " +
+    "bg-transparent text-ink border-rule " +
+    "hover:bg-olive hover:text-primary-foreground hover:border-olive hover:shadow-md hover:-translate-y-px " +
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+
+  const tertiaryCls =
+    "group inline-flex items-center gap-1.5 text-sm font-medium text-olive-soft transition-colors duration-200 " +
+    "hover:text-olive focus-visible:outline-none focus-visible:text-olive";
+
   return (
     <div
       className={
-        layout === "row"
-          ? "flex flex-wrap items-center gap-3"
-          : "flex flex-col gap-2 w-full"
+        isStack
+          ? "flex flex-col gap-3 w-full"
+          : "flex flex-wrap items-center gap-x-3 gap-y-3"
       }
     >
-      {items.map((it, i) => {
-        const Icon = it.icon;
-        const isPrimary = i === 0;
-        const cls =
-          (isPrimary
-            ? "bg-olive text-primary-foreground border-olive hover:bg-mustard hover:text-ink hover:border-mustard"
-            : "bg-transparent text-ink border-rule hover:border-olive hover:text-olive") +
-          " group inline-flex items-center justify-between gap-3 px-5 py-3 rounded-sm border text-sm font-medium transition-colors w-full sm:w-auto" +
-          (layout === "stack" ? " w-full" : "");
-        const inner = (
-          <>
-            <span className="inline-flex items-center gap-2.5">
-              <Icon className="size-4" />
-              {it.label}
-            </span>
-            <ArrowUpRight className="size-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
-          </>
-        );
-        if ("onClick" in it) {
-          return (
-            <button key={it.label} type="button" onClick={it.onClick} className={cls}>
-              {inner}
-            </button>
-          );
+      <button
+        type="button"
+        onClick={onContact}
+        className={primaryCls + (isStack ? " w-full" : "")}
+      >
+        <Mail className="size-4" />
+        Let's talk
+        <ArrowUpRight className="size-4 opacity-80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+      </button>
+
+      <a
+        href={profile.linkedin}
+        target="_blank"
+        rel="noopener"
+        className={secondaryCls + (isStack ? " w-full" : "")}
+      >
+        <Linkedin className="size-4" />
+        LinkedIn
+        <ArrowUpRight className="size-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+      </a>
+
+      <a
+        href="/regina-yuan-resume.pdf"
+        download=""
+        className={
+          tertiaryCls +
+          (isStack
+            ? " w-full justify-center pt-1"
+            : " ml-1 sm:ml-2 underline-offset-4 hover:underline")
         }
-        return (
-          <a
-            key={it.label}
-            href={it.href}
-            {...(it.external ? { target: "_blank", rel: "noopener" } : {})}
-            {...("download" in it && it.download ? { download: "" } : {})}
-            className={cls}
-          >
-            {inner}
-          </a>
-        );
-      })}
+      >
+        <FileDown className="size-4" />
+        Download résumé
+      </a>
     </div>
   );
 }
@@ -253,21 +247,17 @@ function VariantB({
 }
 
 /* ──────────────────────────────────────────────────────────── *
- * Floating dev/preview controls                                *
+ * Floating dev/preview controls (layout + headline only)       *
  * ──────────────────────────────────────────────────────────── */
 
 function HeroControls({
   variant,
   setVariant,
-  palette,
-  setPalette,
   headlineId,
   setHeadlineId,
 }: {
   variant: Variant;
   setVariant: (v: Variant) => void;
-  palette: Palette;
-  setPalette: (p: Palette) => void;
   headlineId: string;
   setHeadlineId: (id: string) => void;
 }) {
@@ -294,28 +284,6 @@ function HeroControls({
             >
               <X className="size-4" />
             </button>
-          </div>
-
-          {/* Palette */}
-          <div className="mb-4">
-            <div className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1.5">
-              Palette
-            </div>
-            <div className="grid grid-cols-2 gap-1.5">
-              {(["warm", "ink"] as const).map((p) => (
-                <button
-                  key={p}
-                  onClick={() => setPalette(p)}
-                  className={`text-xs py-2 rounded-sm border transition-colors ${
-                    palette === p
-                      ? "bg-olive text-primary-foreground border-olive"
-                      : "border-rule hover:border-olive"
-                  }`}
-                >
-                  {p === "warm" ? "Cream + Olive" : "Ink + Plum (M3)"}
-                </button>
-              ))}
-            </div>
           </div>
 
           {/* Variant */}
@@ -382,17 +350,7 @@ function HeroControls({
 
 export function Hero({ onContact }: { onContact: () => void }) {
   const [variant, setVariant] = useState<Variant>("A");
-  const [palette, setPalette] = useState<Palette>("warm");
   const [headlineId, setHeadlineId] = useState<string>("d2");
-
-  // Apply palette to <html> via data attribute (toggles M3 token override).
-  useEffect(() => {
-    if (palette === "ink") {
-      document.documentElement.setAttribute("data-palette", "ink");
-    } else {
-      document.documentElement.removeAttribute("data-palette");
-    }
-  }, [palette]);
 
   const headline = headlines.find((h) => h.id === headlineId) ?? headlines[0];
 
@@ -406,8 +364,6 @@ export function Hero({ onContact }: { onContact: () => void }) {
       <HeroControls
         variant={variant}
         setVariant={setVariant}
-        palette={palette}
-        setPalette={setPalette}
         headlineId={headlineId}
         setHeadlineId={setHeadlineId}
       />

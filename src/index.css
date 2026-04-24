@@ -3,46 +3,52 @@
 
 /* ============================================================
    Regina Yuan — Brand & Growth Executive
-   Design system: warm cream, mustard, deep olive (the workhorse)
-   All colors HSL.
+   Design system: Material 3 — Ink Navy · Slate · Dusty Plum
+   on warm off-white surfaces. All colors HSL.
    ============================================================ */
 
 :root {
-  --background: 47 64% 92%;
-  --foreground: 80 14% 12%;
-  --card: 45 55% 95%;
-  --card-foreground: 80 14% 12%;
-  --popover: 45 55% 95%;
-  --popover-foreground: 80 14% 12%;
+  /* M3 surfaces */
+  --background: 240 100% 99%;
+  --foreground: 214 12% 11%;
+  --card: 240 41% 97%;
+  --card-foreground: 214 12% 11%;
+  --popover: 240 41% 97%;
+  --popover-foreground: 214 12% 11%;
 
-  --primary: 75 25% 28%;
-  --primary-foreground: 45 60% 96%;
+  /* M3 primary (ink navy) */
+  --primary: 218 38% 41%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 60 25% 88%;
-  --secondary-foreground: 80 14% 18%;
+  /* M3 secondary (slate) */
+  --secondary: 225 72% 92%;
+  --secondary-foreground: 220 18% 30%;
 
-  --muted: 50 30% 86%;
-  --muted-foreground: 80 10% 38%;
+  --muted: 240 24% 94%;
+  --muted-foreground: 222 7% 29%;
 
-  --accent: 38 75% 45%;
-  --accent-foreground: 45 60% 96%;
+  /* M3 tertiary (dusty plum) — used as accent */
+  --accent: 291 16% 40%;
+  --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 65% 45%;
-  --destructive-foreground: 45 60% 96%;
+  --destructive: 0 75% 42%;
+  --destructive-foreground: 0 0% 100%;
 
-  --border: 60 18% 78%;
-  --input: 60 18% 78%;
-  --ring: 75 25% 28%;
+  --border: 230 11% 79%;
+  --input: 230 11% 79%;
+  --ring: 218 38% 41%;
   --radius: 0.25rem;
 
-  --ink: 80 14% 10%;
-  --olive: 75 25% 28%;
-  --olive-soft: 75 18% 42%;
-  --mustard: 38 75% 45%;
-  --cream: 47 64% 92%;
-  --cream-deep: 45 55% 86%;
-  --paper: 45 55% 95%;
-  --rule: 60 14% 70%;
+  /* Brand semantic tokens (mapped onto M3) */
+  --ink: 214 12% 11%;            /* on-surface */
+  --olive: 218 38% 41%;          /* primary — workhorse text accent */
+  --olive-soft: 220 14% 39%;     /* secondary slate */
+  --mustard: 291 16% 40%;        /* tertiary dusty plum — highlight */
+  --mustard-soft: 295 90% 92%;   /* tertiary container */
+  --cream: 240 100% 99%;         /* background */
+  --cream-deep: 240 24% 94%;     /* surface-container */
+  --paper: 240 41% 97%;          /* surface-container-low */
+  --rule: 230 11% 79%;           /* outline-variant */
 
   --sidebar-background: var(--background);
   --sidebar-foreground: var(--foreground);
@@ -54,118 +60,42 @@
   --sidebar-ring: var(--ring);
 }
 
-/* ============================================================
-   Material You preset (preview palette)
-   Apply via <html data-palette="ink"> — leaves default untouched.
-   Primary: deep ink navy · Secondary: muted slate
-   Tertiary: dusty plum · Surface: warm off-white
-   ============================================================ */
-[data-palette="ink"] {
-  --background: 30 20% 96%;
-  --foreground: 220 30% 12%;
-  --card: 30 25% 98%;
-  --card-foreground: 220 30% 12%;
-  --popover: 30 25% 98%;
-  --popover-foreground: 220 30% 12%;
-
-  --primary: 220 45% 18%;
-  --primary-foreground: 30 25% 98%;
-
-  --secondary: 220 12% 88%;
-  --secondary-foreground: 220 30% 18%;
-
-  --muted: 30 15% 92%;
-  --muted-foreground: 220 10% 42%;
-
-  --accent: 320 18% 48%;
-  --accent-foreground: 30 25% 98%;
-
-  --destructive: 0 65% 45%;
-  --destructive-foreground: 30 25% 98%;
-
-  --border: 30 12% 84%;
-  --input: 30 12% 84%;
-  --ring: 220 45% 18%;
-
-  --ink: 220 35% 10%;
-  --olive: 220 45% 18%;
-  --olive-soft: 220 25% 38%;
-  --mustard: 320 18% 48%;
-  --cream: 30 20% 96%;
-  --cream-deep: 30 18% 90%;
-  --paper: 30 25% 98%;
-  --rule: 30 12% 80%;
-}
-[data-palette="ink"].dark,
-.dark[data-palette="ink"] {
-  --background: 220 30% 8%;
-  --foreground: 30 20% 94%;
-  --card: 220 28% 11%;
-  --card-foreground: 30 20% 94%;
-  --popover: 220 28% 11%;
-  --popover-foreground: 30 20% 94%;
-
-  --primary: 220 35% 78%;
-  --primary-foreground: 220 30% 8%;
-
-  --secondary: 220 18% 18%;
-  --secondary-foreground: 30 20% 94%;
-
-  --muted: 220 15% 16%;
-  --muted-foreground: 30 12% 68%;
-
-  --accent: 320 35% 72%;
-  --accent-foreground: 220 30% 8%;
-
-  --border: 220 15% 22%;
-  --input: 220 15% 22%;
-  --ring: 220 35% 78%;
-
-  --ink: 30 20% 94%;
-  --olive: 220 35% 78%;
-  --olive-soft: 220 22% 60%;
-  --mustard: 320 35% 72%;
-  --cream: 220 30% 8%;
-  --cream-deep: 220 28% 11%;
-  --paper: 220 28% 11%;
-  --rule: 220 15% 26%;
-}
-
 .dark {
-  --background: 80 14% 8%;
-  --foreground: 45 60% 92%;
-  --card: 80 14% 11%;
-  --card-foreground: 45 60% 92%;
-  --popover: 80 14% 11%;
-  --popover-foreground: 45 60% 92%;
+  --background: 223 17% 8%;
+  --foreground: 240 14% 90%;
+  --card: 214 12% 11%;
+  --card-foreground: 240 14% 90%;
+  --popover: 214 12% 11%;
+  --popover-foreground: 240 14% 90%;
 
-  --primary: 75 28% 62%;
-  --primary-foreground: 80 14% 10%;
+  --primary: 220 100% 83%;
+  --primary-foreground: 213 81% 21%;
 
-  --secondary: 80 12% 16%;
-  --secondary-foreground: 45 60% 92%;
+  --secondary: 216 50% 31%;
+  --secondary-foreground: 221 100% 92%;
 
-  --muted: 80 10% 18%;
-  --muted-foreground: 45 20% 68%;
+  --muted: 214 11% 13%;
+  --muted-foreground: 230 11% 79%;
 
-  --accent: 38 70% 58%;
-  --accent-foreground: 80 14% 10%;
+  --accent: 295 37% 81%;
+  --accent-foreground: 289 26% 21%;
 
-  --destructive: 0 60% 50%;
-  --destructive-foreground: 45 60% 96%;
+  --destructive: 6 100% 84%;
+  --destructive-foreground: 213 81% 21%;
 
-  --border: 80 10% 22%;
-  --input: 80 10% 22%;
-  --ring: 75 28% 62%;
+  --border: 222 7% 29%;
+  --input: 222 7% 29%;
+  --ring: 220 100% 83%;
 
-  --ink: 45 60% 92%;
-  --olive: 75 28% 62%;
-  --olive-soft: 75 20% 50%;
-  --mustard: 38 70% 58%;
-  --cream: 80 14% 8%;
-  --cream-deep: 80 14% 11%;
-  --paper: 80 14% 11%;
-  --rule: 80 10% 28%;
+  --ink: 240 14% 90%;
+  --olive: 220 100% 83%;
+  --olive-soft: 224 30% 80%;
+  --mustard: 295 37% 81%;
+  --mustard-soft: 289 26% 21%;
+  --cream: 223 17% 8%;
+  --cream-deep: 214 11% 13%;
+  --paper: 214 12% 11%;
+  --rule: 222 7% 29%;
 }
 
 @theme {
@@ -193,6 +123,7 @@
   --color-olive: hsl(var(--olive));
   --color-olive-soft: hsl(var(--olive-soft));
   --color-mustard: hsl(var(--mustard));
+  --color-mustard-soft: hsl(var(--mustard-soft));
   --color-cream: hsl(var(--cream));
   --color-cream-deep: hsl(var(--cream-deep));
   --color-paper: hsl(var(--paper));

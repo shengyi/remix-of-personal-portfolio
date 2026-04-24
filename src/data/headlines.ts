@@ -33,6 +33,17 @@ export const headlines: Headline[] = [
     voice: "declarative",
     lines: ["I make brand", "behave like [[infrastructure]]", "— and read like a story."],
   },
+  {
+    id: "d4",
+    voice: "declarative",
+    lines: ["Brands behave better", "when built like [[systems.]]"],
+    dek: "Fifteen years architecting brand as compounding infrastructure — not campaign output.",
+  },
+  {
+    id: "d5",
+    voice: "declarative",
+    lines: ["Make the brand", "behave like [[infrastructure.]]", "Make the story land."],
+  },
 
   // ── Third-person editorial ──────────────────────────────────────
   {
