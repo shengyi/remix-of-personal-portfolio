@@ -103,22 +103,30 @@ function Metrics() {
 }
 
 function LogoStrip() {
+  // Per-logo optical height tuning (Tailwind h-* classes) so each wordmark
+  // reads at the same visual cap-height regardless of intrinsic aspect ratio.
+  const sizing: Record<string, string> = {
+    "WP Engine": "h-7 md:h-8",
+    DocuSign: "h-6 md:h-7",
+    GoDaddy: "h-9 md:h-10",
+    "National Geographic": "h-9 md:h-10",
+    Google: "h-7 md:h-8",
+    CES: "h-9 md:h-10",
+  };
+
   return (
     <section className="container-page py-16">
       <div className="label-mono text-center mb-8 text-olive-soft">
         Brands built · brands integrated · brands advised
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-x-10 md:gap-x-16 gap-y-8 opacity-80">
+      <div className="grid grid-cols-3 md:grid-cols-6 items-center justify-items-center gap-x-8 md:gap-x-12 gap-y-10">
         {logos.map((l) => (
-          <div
-            key={l.name}
-            className="flex items-center justify-center h-10 md:h-12"
-          >
+          <div key={l.name} className="flex items-center justify-center h-12">
             <img
               src={l.src}
               alt={l.name}
               loading="lazy"
-              className="max-h-full max-w-[140px] w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all dark:invert dark:opacity-90"
+              className={`${sizing[l.name] ?? "h-8"} w-auto object-contain transition-opacity opacity-90 hover:opacity-100`}
             />
           </div>
         ))}
