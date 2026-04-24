@@ -88,7 +88,7 @@ function Metrics() {
           >
             <div className="font-display text-5xl md:text-6xl text-ink leading-none">
               {m.value}
-              <sup className="text-mustard text-3xl md:text-4xl ml-0.5 font-light">{m.suffix}</sup>
+              <sup className="text-accent text-3xl md:text-4xl ml-0.5 font-light">{m.suffix}</sup>
             </div>
             <div className="mt-4 text-sm text-olive leading-snug">
               {m.label}
