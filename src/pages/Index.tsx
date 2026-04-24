@@ -587,7 +587,7 @@ function Contact() {
           <div className="font-mono text-[11px] tracking-[0.18em] uppercase mb-6 text-mustard">
             07 / Contact
           </div>
-          <h2 className="display text-[clamp(36px,5vw,64px)] leading-[0.95]">
+          <h2 className="display text-[clamp(36px,5vw,64px)] leading-[0.95] [&_em]:!text-cream-deep">
             Let's build a <em>category-defining</em> brand.
           </h2>
           <p className="mt-6 text-primary-foreground/70 max-w-md leading-relaxed">
