@@ -16,7 +16,7 @@ import {
   experience,
   education,
 } from "@/data/regina";
-import portrait from "@/assets/portrait-editorial.jpg";
+import { Hero } from "@/components/hero/Hero";
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
@@ -72,52 +72,8 @@ function Topbar() {
   );
 }
 
-function Hero() {
-  return (
-    <section id="top" className="container-page pt-20 pb-24 md:pt-28 md:pb-32">
-      <div className="grid md:grid-cols-[1.4fr_1fr] gap-12 md:gap-20 items-center">
-        <motion.div {...fadeUp}>
-          <div className="label-mono mb-8">{profile.eyebrow}</div>
-          <h1 className="display text-[clamp(48px,8vw,104px)] text-ink">
-            Brand as <em>art,</em>
-            <br />
-            science, and the <em>growth&nbsp;engine.</em>
-          </h1>
-          <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-olive font-mono">
-            {profile.heroMeta.map((m, i) => (
-              <span key={m} className="flex items-center gap-6">
-                {i > 0 && <span className="text-rule">·</span>}
-                {m}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+// Hero is imported from @/components/hero/Hero
 
-        <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
-          <div className="relative">
-            <div className="absolute -inset-3 bg-olive/10 rounded-sm" aria-hidden />
-            <img
-              src={portrait}
-              alt="Editorial portrait of Regina Yuan"
-              width={896}
-              height={1152}
-              className="relative w-full h-auto rounded-sm shadow-[0_30px_80px_-30px_hsl(var(--olive)/0.4)]"
-            />
-          </div>
-          <p className="mt-6 text-[15px] leading-relaxed text-muted-foreground">
-            <span className="text-ink font-medium">Senior brand and marketing leader</span>{" "}
-            architecting category-defining brands at high-velocity consumer and SaaS
-            companies — from <span className="text-ink font-medium">GoDaddy's</span>{" "}
-            "utility-to-iconic" transformation to{" "}
-            <span className="text-ink font-medium">WP Engine's</span> global rebrand and{" "}
-            <span className="text-ink font-medium">DocuSign's</span> Agreement Cloud
-            expansion.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
 
 function Metrics() {
   return (
@@ -653,10 +609,11 @@ function Footer() {
 }
 
 export default function Index() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background paper-grain">
       <Topbar />
-      <Hero />
+      <Hero onContact={() => setContactOpen(true)} />
       <Metrics />
       <LogoStrip />
       <Pillars />
@@ -667,6 +624,7 @@ export default function Index() {
       <Experience />
       <Contact />
       <Footer />
+      {contactOpen && <ContactForm onClose={() => setContactOpen(false)} />}
     </div>
   );
 }
