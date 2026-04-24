@@ -54,6 +54,83 @@
   --sidebar-ring: var(--ring);
 }
 
+/* ============================================================
+   Material You preset (preview palette)
+   Apply via <html data-palette="ink"> — leaves default untouched.
+   Primary: deep ink navy · Secondary: muted slate
+   Tertiary: dusty plum · Surface: warm off-white
+   ============================================================ */
+[data-palette="ink"] {
+  --background: 30 20% 96%;
+  --foreground: 220 30% 12%;
+  --card: 30 25% 98%;
+  --card-foreground: 220 30% 12%;
+  --popover: 30 25% 98%;
+  --popover-foreground: 220 30% 12%;
+
+  --primary: 220 45% 18%;
+  --primary-foreground: 30 25% 98%;
+
+  --secondary: 220 12% 88%;
+  --secondary-foreground: 220 30% 18%;
+
+  --muted: 30 15% 92%;
+  --muted-foreground: 220 10% 42%;
+
+  --accent: 320 18% 48%;
+  --accent-foreground: 30 25% 98%;
+
+  --destructive: 0 65% 45%;
+  --destructive-foreground: 30 25% 98%;
+
+  --border: 30 12% 84%;
+  --input: 30 12% 84%;
+  --ring: 220 45% 18%;
+
+  --ink: 220 35% 10%;
+  --olive: 220 45% 18%;
+  --olive-soft: 220 25% 38%;
+  --mustard: 320 18% 48%;
+  --cream: 30 20% 96%;
+  --cream-deep: 30 18% 90%;
+  --paper: 30 25% 98%;
+  --rule: 30 12% 80%;
+}
+[data-palette="ink"].dark,
+.dark[data-palette="ink"] {
+  --background: 220 30% 8%;
+  --foreground: 30 20% 94%;
+  --card: 220 28% 11%;
+  --card-foreground: 30 20% 94%;
+  --popover: 220 28% 11%;
+  --popover-foreground: 30 20% 94%;
+
+  --primary: 220 35% 78%;
+  --primary-foreground: 220 30% 8%;
+
+  --secondary: 220 18% 18%;
+  --secondary-foreground: 30 20% 94%;
+
+  --muted: 220 15% 16%;
+  --muted-foreground: 30 12% 68%;
+
+  --accent: 320 35% 72%;
+  --accent-foreground: 220 30% 8%;
+
+  --border: 220 15% 22%;
+  --input: 220 15% 22%;
+  --ring: 220 35% 78%;
+
+  --ink: 30 20% 94%;
+  --olive: 220 35% 78%;
+  --olive-soft: 220 22% 60%;
+  --mustard: 320 35% 72%;
+  --cream: 220 30% 8%;
+  --cream-deep: 220 28% 11%;
+  --paper: 220 28% 11%;
+  --rule: 220 15% 26%;
+}
+
 .dark {
   --background: 80 14% 8%;
   --foreground: 45 60% 92%;
