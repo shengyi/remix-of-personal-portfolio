@@ -165,7 +165,7 @@ function Pillars() {
         {pillars.map((p, idx) => (
           <motion.div key={p.num} {...fadeUp} className="grid md:grid-cols-[1fr_2fr] gap-10 md:gap-16">
             <div className="md:sticky md:top-24 md:self-start">
-              <div className="font-mono text-xs text-mustard mb-3 tracking-wider">
+              <div className="font-mono text-xs text-accent mb-3 tracking-wider font-semibold">
                 PILLAR {p.num}
               </div>
               <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 leading-tight">
@@ -179,7 +179,7 @@ function Pillars() {
                 idx === 3 ? (
                   <div key={i} className="border border-rule rounded-sm p-6 hover:border-olive transition-colors">
                     <div className="flex items-center gap-2 text-xs label-mono mb-3">
-                      <span className="size-1.5 rounded-full bg-mustard" />
+                      <span className="size-1.5 rounded-full bg-accent" />
                       <span className="text-olive">{c.meta}</span>
                     </div>
                     <h4 className="font-display text-xl text-ink mb-2">{c.title}</h4>
@@ -399,7 +399,7 @@ function Global() {
             >
               <div className="font-display text-xl text-olive">{w.co}</div>
               <p className="text-sm text-muted-foreground leading-relaxed">{w.detail}</p>
-              <div className="font-mono text-xs text-mustard whitespace-nowrap">{w.impact}</div>
+              <div className="font-mono text-xs text-accent font-semibold whitespace-nowrap">{w.impact}</div>
             </div>
           ))}
         </div>
