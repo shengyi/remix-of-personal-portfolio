@@ -818,7 +818,7 @@ function Experience() {
   return (
     <section id="experience" className="container-page py-24 md:py-32">
       <SectionHead
-        index="06 / Experience"
+        index="05 / Experience"
         title={
           <>
             Fifteen years, <em>seven chapters.</em>
@@ -982,7 +982,7 @@ function Contact() {
       <div className="container-page py-24 md:py-32 grid md:grid-cols-[1fr_1fr] gap-12 md:gap-20">
         <div>
           <div className="font-mono text-[11px] tracking-[0.18em] uppercase mb-6 text-mustard">
-            07 / Contact
+            06 / Contact
           </div>
           <h2 className="display text-[clamp(36px,5vw,64px)] leading-[0.95] [&_em]:!text-cream-deep">
             Let's build a <em>category-defining</em> brand.
