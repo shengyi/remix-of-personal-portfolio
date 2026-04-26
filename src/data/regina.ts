@@ -181,22 +181,30 @@ export const pillars: Pillar[] = [
       "Design systems as brand equity. Consistency at scale is what separates campaigns from a brand — I build the creative systems that let hundreds of touchpoints speak with one voice.",
     cases: [
       {
+        label: "WP ENGINE",
+        meta: "WP Engine Design System · launching",
+        title: "One visual language across 20+ brands",
+        body:
+          "Re-envisioned creative identity and component system powering the global rebrand — one scalable visual language across product, marketing, and 20+ acquired brands. Logo expansion system shown.",
+        media: { type: "video", src: wpEngineLogoExpand },
+      },
+      {
+        label: "GODADDY",
         meta: "GoDaddy Design System · godaddy.design",
         title: "Creative identity unifying 60+ brands",
         body:
           "Creative identity and design system unifying 60+ portfolio brands — the foundation beneath the “utility to iconic” brand shift, symbolized by the new “GO” logomark forming a heart.",
+        href: "https://godaddy.design",
+        media: { type: "image", src: illoIdentityTransformation },
       },
       {
+        label: "DOCUSIGN",
         meta: "DocuSign Brand System · brand.docusign.com",
         title: "Agreement Cloud brand platform",
         body:
           "Contributed to the brand & creative platform supporting the “Agreement Cloud” repositioning, with messaging hierarchy and visual guidelines spanning 11 international markets.",
-      },
-      {
-        meta: "WP Engine Design System · launching",
-        title: "One visual language across 20+ brands",
-        body:
-          "Re-envisioned creative identity and component system powering the global rebrand — one scalable visual language across product, marketing, and 20+ acquired brands.",
+        href: "https://brand.docusign.com",
+        media: { type: "image", src: illoMaIntegration },
       },
     ],
   },
