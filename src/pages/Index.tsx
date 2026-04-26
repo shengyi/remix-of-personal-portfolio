@@ -398,172 +398,212 @@ function Pillars() {
       </p>
 
       <div className="space-y-24 md:space-y-32">
-        {pillars.map((p, idx) => (
-          <motion.div key={p.num} {...fadeUp} className="grid md:grid-cols-[1fr_2fr] gap-10 md:gap-16">
-            <div className="md:sticky md:top-24 md:self-start">
-              <div className="font-mono text-xs text-accent mb-3 tracking-wider font-semibold">
-                PILLAR {p.num}
-              </div>
-              <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 leading-tight">
-                {p.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">{p.lede}</p>
-            </div>
+        {pillars.map((p, idx) => {
+          // Pillar 01 (Brand Strategy) gets a full-width header + flagship-style cards
+          if (idx === 0) {
+            return (
+              <motion.div key={p.num} {...fadeUp} className="space-y-10">
+                <div className="grid md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-end">
+                  <div>
+                    <div className="font-mono text-xs text-accent mb-3 tracking-wider font-semibold">
+                      PILLAR {p.num}
+                    </div>
+                    <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 leading-tight">
+                      {p.title}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-lg max-w-2xl">
+                    {p.lede}
+                  </p>
+                </div>
 
-            <div
-              className={
-                idx === 0
-                  ? "space-y-8"
-                  : idx === 1
-                  ? "grid grid-cols-1 sm:grid-cols-6 auto-rows-[220px] gap-4"
-                  : idx === 2 || idx === 3
-                  ? ""
-                  : "space-y-px"
-              }
-            >
-              {idx === 2 && <CreativeShowcase cases={p.cases} />}
-              {idx === 3 && <CampaignTabs cases={p.cases} />}
-              {idx !== 2 && idx !== 3 && p.cases.map((c, i) =>
-                idx === 0 ? (
-                  <article
-                    key={i}
-                    className="group relative overflow-hidden rounded-md border border-rule bg-paper hover:border-olive focus-within:border-olive transition-colors"
-                  >
-                    <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-                      {/* Visual */}
-                      <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[320px] overflow-hidden bg-[#0b0b10]">
-                        <img
-                          src={c.illustration ?? brandPlaceholder}
-                          alt=""
-                          aria-hidden="true"
-                          loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
-                        />
-                        {/* Accessible eyebrow pill — solid background for contrast over busy artwork */}
-                        <div className="absolute left-4 top-4">
-                          <span className="inline-block bg-paper text-ink font-mono text-[11px] tracking-[0.18em] font-semibold px-2.5 py-1 rounded-sm shadow-sm border border-rule">
-                            {c.label ?? "CASE STUDY"}
-                          </span>
+                {/* Flagship-style cards: top 2 are featured (with hrefs), rest are compact */}
+                <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+                  {p.cases.slice(0, 2).map((c) => {
+                    const Comp: any = c.href ? "a" : "div";
+                    return (
+                      <Comp
+                        key={c.title}
+                        {...(c.href
+                          ? { href: c.href, target: "_blank", rel: "noopener" }
+                          : {})}
+                        className={`group relative bg-paper border border-rule p-8 md:p-10 rounded-sm transition-colors block ${
+                          c.href ? "hover:border-olive cursor-pointer" : ""
+                        }`}
+                      >
+                        <div className="label-mono mb-6 text-olive">
+                          Case Study · {c.meta}
                         </div>
-                      </div>
-
-                      {/* Content (always visible, no hover required) */}
-                      <div className="flex flex-col p-6 md:p-8">
-                        <div className="text-[11px] label-mono text-olive mb-2">{c.meta}</div>
-                        <h4 className="font-display text-2xl md:text-[1.65rem] text-ink mb-3 leading-tight">
+                        <h4 className="font-display text-2xl md:text-3xl mb-4 leading-tight text-ink">
                           {c.title}
                         </h4>
-                        <p className="text-[15px] text-muted-foreground leading-relaxed mb-5">
+                        <p className="text-muted-foreground leading-relaxed mb-6">
+                          {c.body}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {(c.results ?? []).map((r) => (
+                            <span
+                              key={r.label}
+                              className="text-xs px-3 py-1 rounded-full border border-rule text-ink/80 bg-background"
+                            >
+                              {r.value} {r.label.toLowerCase()}
+                            </span>
+                          ))}
+                        </div>
+                        {c.href && (
+                          <ArrowUpRight className="absolute top-8 right-8 size-5 text-olive group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        )}
+                      </Comp>
+                    );
+                  })}
+                </div>
+
+                {/* Remaining cases as a 2-up compact row */}
+                {p.cases.length > 2 && (
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {p.cases.slice(2).map((c) => (
+                      <article
+                        key={c.title}
+                        className="group bg-cream-deep/40 border border-rule rounded-sm p-7 md:p-8 hover:border-olive transition-colors"
+                      >
+                        <div className="label-mono mb-3 text-olive">
+                          {c.label ?? c.meta}
+                        </div>
+                        <h4 className="font-display text-xl md:text-2xl text-ink mb-3 leading-tight">
+                          {c.title}
+                        </h4>
+                        <p className="text-[14px] text-muted-foreground leading-relaxed mb-5">
                           {c.body}
                         </p>
                         {c.results && (
-                          <div className="mt-auto grid grid-cols-3 gap-4 pt-5 border-t border-rule/60">
+                          <div className="flex flex-wrap gap-x-8 gap-y-3 pt-4 border-t border-rule/60">
                             {c.results.map((r) => (
                               <div key={r.label}>
-                                <div className="font-display text-xl md:text-2xl text-olive leading-tight">
+                                <div className="font-display text-lg text-olive leading-tight">
                                   {r.value}
                                 </div>
-                                <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                                <div className="text-[11px] text-muted-foreground mt-0.5 leading-snug">
                                   {r.label}
                                 </div>
                               </div>
                             ))}
                           </div>
                         )}
-                      </div>
+                      </article>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            );
+          }
+
+          // Pillar 04 (Campaign Strategy) — full-width header, full-width tabs below
+          if (idx === 3) {
+            return (
+              <motion.div key={p.num} {...fadeUp} className="space-y-10">
+                <div className="grid md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-end">
+                  <div>
+                    <div className="font-mono text-xs text-accent mb-3 tracking-wider font-semibold">
+                      PILLAR {p.num}
                     </div>
-                  </article>
-                ) : idx === 1 ? (
-                  (() => {
-                    // Bento spans across a 6-col grid (sm+)
-                    const spans = [
-                      "sm:col-span-3 sm:row-span-2",
-                      "sm:col-span-3 sm:row-span-1",
-                      "sm:col-span-3 sm:row-span-1",
-                      "sm:col-span-6 sm:row-span-1",
-                    ];
-                    const headline = c.results?.[0]?.value ?? "";
-                    return (
-                      <div
-                        key={i}
-                        className={`group [perspective:1200px] ${spans[i] ?? ""}`}
-                      >
-                        <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]">
-                          {/* Front */}
-                          <div
-                            tabIndex={0}
-                            className="absolute inset-0 [backface-visibility:hidden] rounded-md border border-rule bg-paper hover:border-olive focus:border-olive focus:outline-none transition-colors p-6 flex flex-col justify-between overflow-hidden"
-                          >
-                            <div className="flex items-start justify-between gap-3">
-                              <div className="font-mono text-[11px] tracking-[0.18em] text-accent font-semibold">
-                                {c.label ?? c.meta}
-                              </div>
-                              <div className="font-mono text-[10px] text-muted-foreground tracking-wider">
-                                ↻ FLIP
-                              </div>
-                            </div>
-                            <div>
-                              {headline && (
-                                <div className="font-display text-5xl md:text-6xl text-olive leading-none mb-3">
-                                  {headline}
-                                </div>
-                              )}
-                              <h4 className="font-display text-xl md:text-2xl text-ink leading-tight">
-                                {c.title}
-                              </h4>
-                            </div>
-                          </div>
-                          {/* Back */}
-                          <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-md border border-olive bg-cream-deep/70 p-6 flex flex-col overflow-hidden">
-                            <div className="font-mono text-[11px] tracking-[0.18em] text-olive font-semibold mb-3">
+                    <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 leading-tight">
+                      {p.title}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-lg max-w-2xl">
+                    {p.lede}
+                  </p>
+                </div>
+                <CampaignTabs cases={p.cases} />
+              </motion.div>
+            );
+          }
+
+          // Pillars 02 (Brand Intelligence) & 03 (Creative) keep their existing 2-col layouts
+          return (
+            <motion.div key={p.num} {...fadeUp} className="grid md:grid-cols-[1fr_2fr] gap-10 md:gap-16">
+              <div className="md:sticky md:top-24 md:self-start">
+                <div className="font-mono text-xs text-accent mb-3 tracking-wider font-semibold">
+                  PILLAR {p.num}
+                </div>
+                <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 leading-tight">
+                  {p.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">{p.lede}</p>
+              </div>
+
+              <div
+                className={
+                  idx === 1
+                    ? "grid grid-cols-1 sm:grid-cols-6 auto-rows-[220px] gap-4"
+                    : ""
+                }
+              >
+                {idx === 2 && <CreativeShowcase cases={p.cases} />}
+                {idx === 1 && p.cases.map((c, i) => {
+                  const spans = [
+                    "sm:col-span-3 sm:row-span-2",
+                    "sm:col-span-3 sm:row-span-1",
+                    "sm:col-span-3 sm:row-span-1",
+                    "sm:col-span-6 sm:row-span-1",
+                  ];
+                  const headline = c.results?.[0]?.value ?? "";
+                  return (
+                    <div key={i} className={`group [perspective:1200px] ${spans[i] ?? ""}`}>
+                      <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]">
+                        <div
+                          tabIndex={0}
+                          className="absolute inset-0 [backface-visibility:hidden] rounded-md border border-rule bg-paper hover:border-olive focus:border-olive focus:outline-none transition-colors p-6 flex flex-col justify-between overflow-hidden"
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="font-mono text-[11px] tracking-[0.18em] text-accent font-semibold">
                               {c.label ?? c.meta}
                             </div>
-                            <p className="text-sm text-ink leading-relaxed mb-4 overflow-y-auto">
-                              {c.body}
-                            </p>
-                            {c.results && (
-                              <div className="mt-auto grid grid-cols-3 gap-3 pt-3 border-t border-olive/30">
-                                {c.results.map((r) => (
-                                  <div key={r.label}>
-                                    <div className="font-display text-lg text-olive leading-tight">
-                                      {r.value}
-                                    </div>
-                                    <div className="text-[10px] text-muted-foreground mt-0.5 leading-snug">
-                                      {r.label}
-                                    </div>
-                                  </div>
-                                ))}
+                            <div className="font-mono text-[10px] text-muted-foreground tracking-wider">
+                              ↻ FLIP
+                            </div>
+                          </div>
+                          <div>
+                            {headline && (
+                              <div className="font-display text-5xl md:text-6xl text-olive leading-none mb-3">
+                                {headline}
                               </div>
                             )}
+                            <h4 className="font-display text-xl md:text-2xl text-ink leading-tight">
+                              {c.title}
+                            </h4>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })()
-                ) : (
-                  <div key={i} className="border-b border-rule py-6 first:border-t">
-                    <div className="flex items-center gap-2 text-xs label-mono mb-3">
-                      <span className="size-1.5 rounded-full bg-olive" />
-                      <span className="text-olive">{c.meta}</span>
-                    </div>
-                    <h4 className="font-display text-2xl text-ink mb-2 leading-tight">{c.title}</h4>
-                    <p className="text-muted-foreground leading-relaxed mb-4 max-w-2xl">{c.body}</p>
-                    {c.results && (
-                      <div className="flex flex-wrap gap-x-10 gap-y-3 pt-2">
-                        {c.results.map((r) => (
-                          <div key={r.label}>
-                            <div className="font-display text-2xl text-olive">{r.value}</div>
-                            <div className="text-[11px] text-muted-foreground mt-0.5">{r.label}</div>
+                        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-md border border-olive bg-cream-deep/70 p-6 flex flex-col overflow-hidden">
+                          <div className="font-mono text-[11px] tracking-[0.18em] text-olive font-semibold mb-3">
+                            {c.label ?? c.meta}
                           </div>
-                        ))}
+                          <p className="text-sm text-ink leading-relaxed mb-4 overflow-y-auto">
+                            {c.body}
+                          </p>
+                          {c.results && (
+                            <div className="mt-auto grid grid-cols-3 gap-3 pt-3 border-t border-olive/30">
+                              {c.results.map((r) => (
+                                <div key={r.label}>
+                                  <div className="font-display text-lg text-olive leading-tight">
+                                    {r.value}
+                                  </div>
+                                  <div className="text-[10px] text-muted-foreground mt-0.5 leading-snug">
+                                    {r.label}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    )}
-                  </div>
-                )
-              )}
-            </div>
-          </motion.div>
-        ))}
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
