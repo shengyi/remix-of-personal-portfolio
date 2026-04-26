@@ -146,6 +146,127 @@ function SectionHead({ index, title }: { index: string; title: React.ReactNode }
   );
 }
 
+function CreativeShowcase({ cases }: { cases: Case[] }) {
+  const [active, setActive] = useState(0);
+  const current = cases[active];
+  const go = (dir: 1 | -1) =>
+    setActive((a) => (a + dir + cases.length) % cases.length);
+
+  return (
+    <div className="rounded-md border border-rule bg-paper overflow-hidden">
+      {/* Media stage */}
+      <div className="relative aspect-[16/10] md:aspect-[16/9] bg-[#0b0b10] overflow-hidden">
+        {cases.map((c, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-500 ${
+              i === active ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+            aria-hidden={i !== active}
+          >
+            {c.media?.type === "video" ? (
+              <video
+                src={c.media.src}
+                poster={c.media.poster}
+                autoPlay={i === active}
+                muted
+                loop
+                playsInline
+                className="h-full w-full object-cover"
+              />
+            ) : c.media?.type === "image" ? (
+              <img
+                src={c.media.src}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <div className="h-full w-full grid place-items-center text-muted-foreground text-sm">
+                Visual coming soon
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Eyebrow pill */}
+        <div className="absolute left-4 top-4 z-10">
+          <span className="inline-block bg-paper text-ink font-mono text-[11px] tracking-[0.18em] font-semibold px-2.5 py-1 rounded-sm shadow-sm border border-rule">
+            {current.label ?? "DESIGN SYSTEM"}
+          </span>
+        </div>
+
+        {/* Carousel arrows */}
+        <div className="absolute right-4 top-4 z-10 flex gap-2">
+          <button
+            onClick={() => go(-1)}
+            aria-label="Previous"
+            className="size-9 inline-flex items-center justify-center rounded-full bg-paper/90 border border-rule text-ink hover:bg-olive hover:text-primary-foreground transition-colors"
+          >
+            <ArrowLeft className="size-4" />
+          </button>
+          <button
+            onClick={() => go(1)}
+            aria-label="Next"
+            className="size-9 inline-flex items-center justify-center rounded-full bg-paper/90 border border-rule text-ink hover:bg-olive hover:text-primary-foreground transition-colors"
+          >
+            <ArrowRight className="size-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Caption */}
+      <div className="p-6 md:p-8 grid md:grid-cols-[1fr_auto] gap-6 items-end">
+        <div>
+          <div className="text-[11px] label-mono text-olive mb-2">{current.meta}</div>
+          <h4 className="font-display text-2xl md:text-3xl text-ink mb-3 leading-tight">
+            {current.title}
+          </h4>
+          <p className="text-[15px] text-muted-foreground leading-relaxed max-w-2xl">
+            {current.body}
+          </p>
+          {current.href && (
+            <a
+              href={current.href}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-1.5 mt-4 text-sm text-olive hover:text-ink transition-colors"
+            >
+              Visit live system <ArrowUpRight className="size-3.5" />
+            </a>
+          )}
+        </div>
+        <div className="font-mono text-xs text-muted-foreground tracking-wider whitespace-nowrap">
+          {String(active + 1).padStart(2, "0")} / {String(cases.length).padStart(2, "0")}
+        </div>
+      </div>
+
+      {/* Tab strip */}
+      <div className="grid grid-cols-3 border-t border-rule">
+        {cases.map((c, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className={`text-left px-5 py-4 border-l first:border-l-0 border-rule transition-colors ${
+              i === active
+                ? "bg-cream-deep/60 text-ink"
+                : "text-muted-foreground hover:text-ink hover:bg-cream-deep/30"
+            }`}
+          >
+            <div className="font-mono text-[10px] tracking-[0.18em] mb-1">
+              {c.label ?? `0${i + 1}`}
+            </div>
+            <div className="font-display text-sm leading-tight line-clamp-2">
+              {c.title}
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Pillars() {
   return (
     <section id="work" className="container-page py-24 md:py-32">
