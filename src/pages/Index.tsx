@@ -712,38 +712,103 @@ function Endorsements() {
 }
 
 function Global() {
+  const langFlags: Record<string, string> = {
+    Mandarin: "🇨🇳",
+    Japanese: "🇯🇵",
+    Spanish: "🇪🇸",
+    English: "🇺🇸",
+  };
+
   return (
-    <section id="international" className="container-page py-24 md:py-32">
-      <SectionHead
-        index="05 / Global"
-        title={
-          <>
-            A <em>world-shaped</em> view of market expansion.
-          </>
-        }
-      />
-      <div className="grid md:grid-cols-[2fr_1fr] gap-12 md:gap-20">
-        <div>
+    <section id="international" className="bg-cream-deep/60 border-y border-rule">
+      <div className="container-page py-24 md:py-32">
+        <SectionHead
+          index="02 / Global"
+          title={
+            <>
+              A <em>world-shaped</em> view of market expansion.
+            </>
+          }
+        />
+        <p className="text-lg text-muted-foreground max-w-2xl mb-16 leading-relaxed">
+          A career built across four continents and eleven markets — fluent in the
+          languages, but more importantly fluent in the segmentation, the channels,
+          and the cultural nuance that decide whether expansion compounds or stalls.
+        </p>
+
+        {/* Region cards with flag clusters */}
+        <div className="grid md:grid-cols-2 gap-5">
           {internationalWork.map((w) => (
-            <div
+            <motion.article
               key={w.co}
-              className="grid grid-cols-[120px_1fr_auto] gap-6 py-6 border-b border-rule first:border-t items-baseline"
+              {...fadeUp}
+              className="group bg-paper border border-rule hover:border-olive transition-colors rounded-sm p-7 md:p-8 flex flex-col"
             >
-              <div className="font-display text-xl text-olive">{w.co}</div>
-              <p className="text-sm text-muted-foreground leading-relaxed">{w.detail}</p>
-              <div className="font-mono text-xs text-accent font-semibold whitespace-nowrap">{w.impact}</div>
-            </div>
+              <div className="flex items-start justify-between gap-4 mb-5">
+                <div>
+                  <div className="font-display text-xl text-olive mb-1">{w.co}</div>
+                  <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
+                    {w.regions}
+                  </div>
+                </div>
+                <div className="font-mono text-xs text-accent font-semibold whitespace-nowrap bg-cream-deep/80 border border-rule px-2.5 py-1 rounded-sm">
+                  {w.impact}
+                </div>
+              </div>
+
+              {/* Flag cluster */}
+              <div
+                aria-hidden
+                className="flex flex-wrap gap-1.5 text-2xl leading-none mb-5"
+              >
+                {w.flags.map((f, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center justify-center size-9 rounded-full bg-cream-deep/60 border border-rule/60"
+                  >
+                    {f}
+                  </span>
+                ))}
+              </div>
+
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {w.detail}
+              </p>
+            </motion.article>
           ))}
         </div>
-        <aside className="bg-olive/8 border border-olive/30 rounded-sm p-6 self-start">
-          <div className="label-mono mb-4 text-olive">Languages · native-level fluency</div>
-          {languages.map((l) => (
-            <div key={l.name} className="flex justify-between py-2.5 border-b border-rule/60 last:border-0">
-              <span className="font-display text-lg text-ink">{l.name}</span>
-              <span className="text-sm text-muted-foreground">{l.level}</span>
+
+        {/* Languages — integrated as a horizontal strip */}
+        <div className="mt-12 bg-paper border border-rule rounded-sm p-6 md:p-8">
+          <div className="grid md:grid-cols-[200px_1fr] gap-6 md:gap-10 items-center">
+            <div>
+              <div className="label-mono mb-2 text-olive">Languages</div>
+              <div className="font-display text-lg text-ink leading-tight">
+                Four working languages — across selling, hiring, and creative direction.
+              </div>
             </div>
-          ))}
-        </aside>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {languages.map((l) => (
+                <div
+                  key={l.name}
+                  className="flex items-center gap-3 py-2 border-l-2 border-olive/40 pl-3"
+                >
+                  <span aria-hidden className="text-2xl leading-none">
+                    {langFlags[l.name] ?? "🌐"}
+                  </span>
+                  <div>
+                    <div className="font-display text-base text-ink leading-tight">
+                      {l.name}
+                    </div>
+                    <div className="text-[11px] text-muted-foreground mt-0.5">
+                      {l.level}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
