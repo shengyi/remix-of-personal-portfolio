@@ -7,7 +7,7 @@ import {
   metrics,
   logos,
   pillars,
-  flagshipCases,
+  
   press,
   awards,
   endorsements,
@@ -18,7 +18,6 @@ import {
   type Case,
 } from "@/data/regina";
 import { Hero } from "@/components/hero/Hero";
-import brandPlaceholder from "@/assets/illustrations/brand-placeholder.png";
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
