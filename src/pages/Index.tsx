@@ -178,7 +178,7 @@ function Pillars() {
             <div
               className={
                 idx === 0
-                  ? "grid sm:grid-cols-2 gap-6"
+                  ? "space-y-8"
                   : idx === 3
                   ? "grid sm:grid-cols-2 gap-6"
                   : "space-y-px"
@@ -186,57 +186,54 @@ function Pillars() {
             >
               {p.cases.map((c, i) =>
                 idx === 0 ? (
-                  <div
+                  <article
                     key={i}
-                    className="group relative overflow-hidden rounded-sm border border-rule bg-paper hover:border-olive transition-colors focus-within:border-olive"
-                    tabIndex={0}
+                    className="group relative overflow-hidden rounded-md border border-rule bg-paper hover:border-olive focus-within:border-olive transition-colors"
                   >
-                    {/* Visual layer */}
-                    <div className="relative aspect-[4/3] overflow-hidden bg-cream-deep/40">
-                      <img
-                        src={c.illustration ?? brandPlaceholder}
-                        alt=""
-                        aria-hidden="true"
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-focus-within:scale-105"
-                      />
-                      {/* Label overlay (visible at rest) */}
-                      <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-ink/80 via-ink/40 to-transparent transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0">
-                        <div className="font-mono text-[11px] tracking-[0.18em] text-cream font-semibold mb-1">
-                          {c.label ?? "CASE STUDY"}
+                    <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+                      {/* Visual */}
+                      <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[320px] overflow-hidden bg-[#0b0b10]">
+                        <img
+                          src={c.illustration ?? brandPlaceholder}
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
+                        />
+                        {/* Accessible eyebrow pill — solid background for contrast over busy artwork */}
+                        <div className="absolute left-4 top-4">
+                          <span className="inline-block bg-paper text-ink font-mono text-[11px] tracking-[0.18em] font-semibold px-2.5 py-1 rounded-sm shadow-sm border border-rule">
+                            {c.label ?? "CASE STUDY"}
+                          </span>
                         </div>
-                        <h4 className="font-display text-xl text-cream leading-tight">
+                      </div>
+
+                      {/* Content (always visible, no hover required) */}
+                      <div className="flex flex-col p-6 md:p-8">
+                        <div className="text-[11px] label-mono text-olive mb-2">{c.meta}</div>
+                        <h4 className="font-display text-2xl md:text-[1.65rem] text-ink mb-3 leading-tight">
                           {c.title}
                         </h4>
+                        <p className="text-[15px] text-muted-foreground leading-relaxed mb-5">
+                          {c.body}
+                        </p>
+                        {c.results && (
+                          <div className="mt-auto grid grid-cols-3 gap-4 pt-5 border-t border-rule/60">
+                            {c.results.map((r) => (
+                              <div key={r.label}>
+                                <div className="font-display text-xl md:text-2xl text-olive leading-tight">
+                                  {r.value}
+                                </div>
+                                <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                                  {r.label}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
-
-                    {/* Reveal layer */}
-                    <div
-                      className="absolute inset-0 flex flex-col bg-paper/95 backdrop-blur-sm p-6 md:p-7 opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
-                    >
-                      <div className="font-mono text-[11px] tracking-[0.18em] text-accent font-semibold mb-2">
-                        {c.label ?? "CASE STUDY"}
-                      </div>
-                      <h4 className="font-display text-xl md:text-2xl text-ink mb-2 leading-tight">
-                        {c.title}
-                      </h4>
-                      <div className="text-[11px] label-mono text-olive mb-3">{c.meta}</div>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-4 overflow-y-auto">
-                        {c.body}
-                      </p>
-                      {c.results && (
-                        <div className="mt-auto grid grid-cols-3 gap-3 pt-4 border-t border-rule/60">
-                          {c.results.map((r) => (
-                            <div key={r.label}>
-                              <div className="font-display text-lg text-olive leading-tight">{r.value}</div>
-                              <div className="text-[10px] text-muted-foreground mt-0.5 leading-snug">{r.label}</div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                  </article>
                 ) : idx === 3 ? (
                   <div key={i} className="border border-rule rounded-sm p-6 hover:border-olive transition-colors">
                     <div className="flex items-center gap-2 text-xs label-mono mb-3">
