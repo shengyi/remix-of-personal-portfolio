@@ -10,10 +10,8 @@ import natGeoLogo from "@/assets/logos/national-geographic.png";
 import googleLogo from "@/assets/logos/google.png";
 import cesLogo from "@/assets/logos/ces.png";
 
-import illoCategoryExpansion from "@/assets/illustrations/category-expansion.png";
 import illoIdentityTransformation from "@/assets/illustrations/identity-transformation.png";
 import illoMaIntegration from "@/assets/illustrations/ma-brand-integration.png";
-import illoCustomerSegmentation from "@/assets/illustrations/customer-segmentation.png";
 
 import wpEngineLogoExpand from "@/assets/media/wp-engine-logo-expand.mp4";
 
@@ -84,32 +82,36 @@ export const pillars: Pillar[] = [
         label: "CATEGORY EXPANSION",
         meta: "WP Engine · 2023–Now",
         title: "Global rebrand & category repositioning",
-        illustration: illoCategoryExpansion,
         body:
-          "Architected a comprehensive rebrand aligning Product, Sales, Marketing, and CX around a unified GTM narrative — repositioning WP Engine from hosting provider to WordPress platform leader powering 63% of the CMS web.",
+          "Architected a comprehensive rebrand aligning Product, Sales, Marketing, and CX around a unified GTM narrative — repositioning WP Engine from hosting provider to WordPress platform leader powering 63% of the CMS web. Covered in MarTech Series.",
+        href: "https://martechseries.com/mts-insights/interviews/martech-interview-with-regina-yuan-head-of-brand-wp-engine/",
         results: [
           { value: "150%", label: "Brand awareness lift" },
           { value: "200%", label: "Search interest surge" },
           { value: "100%", label: "Stakeholder sentiment" },
+          { value: "5×", label: "Channel efficiency" },
+          { value: "Digiday", label: "Shortlist" },
         ],
       },
       {
         label: "IDENTITY TRANSFORMATION",
         meta: "GoDaddy · 2015–2021",
-        title: "“Utility to iconic” brand transformation",
-        illustration: illoIdentityTransformation,
+        title: "From utility to iconic.",
         body:
-          "Led GoDaddy's first portfolio-wide brand strategy and brand measurement framework on a $25M annual budget — shifting brand perception from functional utility to aspirational platform for 20M+ creators and SMBs.",
+          "Retired the cartoonish mascot, authored a new “GO” monogram (two letters forming a heart), and translated brand empathy into commercial growth across a $4B subscription platform serving 20M+ customers. Featured in Fast Company and A Change of Brand podcast.",
+        href: "https://www.fastcompany.com/90450828/godaddys-new-logo-gets-out-of-the-way-heres-why-thats-good",
         results: [
-          { value: "−25 → +25", label: "Brand preference swing" },
-          { value: "25%", label: "Revenue growth YoY" },
+          { value: "+20%", label: "Traffic" },
+          { value: "+12%", label: "Brand search" },
+          { value: "+11.5%", label: "Revenue '19→'20" },
+          { value: "+40%", label: "E-commerce" },
+          { value: "−25 → +25", label: "Preference swing" },
         ],
       },
       {
         label: "M&A BRAND INTEGRATION",
         meta: "GoDaddy · WP Engine",
         title: "Brand portfolio playbook",
-        illustration: illoMaIntegration,
         body:
           "Built the M&A integration methodology for 60+ acquired brands at GoDaddy and portfolio positioning for NitroPack, ACF, and others at WP Engine — establishing sub-brand architecture, GTM playbooks, and integration frameworks that compound revenue.",
         results: [
@@ -121,7 +123,6 @@ export const pillars: Pillar[] = [
         label: "CUSTOMER SEGMENTATION",
         meta: "GoDaddy · Enterprise-wide",
         title: "SMB segmentation & persona system",
-        illustration: illoCustomerSegmentation,
         body:
           "Led the research, synthesis, and activation of GoDaddy's enterprise-wide customer segmentation — building a McKinsey-validated six-segment SMB model and a full persona library spanning Independents, Partners, and Domain Investors that became the operating system for product, marketing, and CX strategy across 20M+ customers globally.",
         results: [
@@ -375,24 +376,32 @@ export const endorsements = [
 export const internationalWork = [
   {
     co: "DocuSign",
+    flags: ["🇺🇸", "🇬🇧", "🇩🇪", "🇫🇷", "🇯🇵", "🇧🇷", "🇲🇽", "🇦🇺", "🇨🇦", "🇮🇳", "🇸🇬"],
+    regions: "11 markets · global",
     detail:
       "Built a developer market maturity model & tiering system leveraging SAM/TAM, product roadmaps, and efficiency metrics to inform entry strategy across 11 international markets.",
     impact: "+18% revenue",
   },
   {
     co: "GoDaddy",
+    flags: ["🇯🇵", "🇮🇳", "🇸🇬", "🇧🇷", "🇲🇽", "🇮🇩"],
+    regions: "APAC · LATAM · SEA",
     detail:
       "Led international markets strategy and entry campaigns across APAC, South America, and Southeast Asia — localized brand platform and GTM across culturally distinct segments.",
     impact: "3 regions",
   },
   {
     co: "CES / CEA",
+    flags: ["🇨🇳", "🇰🇷", "🇯🇵"],
+    regions: "Asia · inaugural",
     detail:
       "Launched CES Asia for the first time, exceeding all inaugural KPIs. Grew international CES attendance 10%+ annually for three consecutive years.",
     impact: "CES Asia launch",
   },
   {
     co: "National Geographic",
+    flags: ["🇨🇳", "🇲🇳", "🇰🇿"],
+    regions: "Asia program",
     detail:
       "Advised on the launch of the Global Exploration Fund — Asia program, developing grants-making procedure and operations for National Geographic's first Asia-dedicated fund.",
     impact: "First Asia fund",
