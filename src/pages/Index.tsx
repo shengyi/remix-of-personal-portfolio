@@ -181,11 +181,14 @@ function Pillars() {
                   ? "space-y-8"
                   : idx === 1
                   ? "grid grid-cols-1 sm:grid-cols-6 auto-rows-[220px] gap-4"
+                  : idx === 2
+                  ? ""
                   : idx === 3
                   ? "grid sm:grid-cols-2 gap-6"
                   : "space-y-px"
               }
             >
+              {idx === 2 && <CreativeShowcase cases={p.cases} />}
               {p.cases.map((c, i) =>
                 idx === 0 ? (
                   <article
