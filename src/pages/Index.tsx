@@ -179,6 +179,8 @@ function Pillars() {
               className={
                 idx === 0
                   ? "space-y-8"
+                  : idx === 1
+                  ? "grid grid-cols-1 sm:grid-cols-6 auto-rows-[220px] gap-4"
                   : idx === 3
                   ? "grid sm:grid-cols-2 gap-6"
                   : "space-y-px"
