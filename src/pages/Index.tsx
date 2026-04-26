@@ -541,25 +541,6 @@ function Pillars() {
                       </div>
                     );
                   })()
-                ) : idx === 3 ? (
-                  <div key={i} className="border border-rule rounded-sm p-6 hover:border-olive transition-colors">
-                    <div className="flex items-center gap-2 text-xs label-mono mb-3">
-                      <span className="size-1.5 rounded-full bg-accent" />
-                      <span className="text-olive">{c.meta}</span>
-                    </div>
-                    <h4 className="font-display text-xl text-ink mb-2">{c.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{c.body}</p>
-                    {c.results && (
-                      <div className="grid grid-cols-2 gap-3 pt-4 border-t border-rule/60">
-                        {c.results.map((r) => (
-                          <div key={r.label}>
-                            <div className="font-display text-xl text-olive">{r.value}</div>
-                            <div className="text-[11px] text-muted-foreground mt-0.5">{r.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
                 ) : (
                   <div key={i} className="border-b border-rule py-6 first:border-t">
                     <div className="flex items-center gap-2 text-xs label-mono mb-3">
