@@ -17,6 +17,7 @@ import {
   education,
 } from "@/data/regina";
 import { Hero } from "@/components/hero/Hero";
+import brandPlaceholder from "@/assets/illustrations/brand-placeholder.png";
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
@@ -174,9 +175,69 @@ function Pillars() {
               <p className="text-muted-foreground leading-relaxed">{p.lede}</p>
             </div>
 
-            <div className={idx === 3 ? "grid sm:grid-cols-2 gap-6" : "space-y-px"}>
+            <div
+              className={
+                idx === 0
+                  ? "grid sm:grid-cols-2 gap-6"
+                  : idx === 3
+                  ? "grid sm:grid-cols-2 gap-6"
+                  : "space-y-px"
+              }
+            >
               {p.cases.map((c, i) =>
-                idx === 3 ? (
+                idx === 0 ? (
+                  <div
+                    key={i}
+                    className="group relative overflow-hidden rounded-sm border border-rule bg-paper hover:border-olive transition-colors focus-within:border-olive"
+                    tabIndex={0}
+                  >
+                    {/* Visual layer */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-cream-deep/40">
+                      <img
+                        src={c.illustration ?? brandPlaceholder}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-focus-within:scale-105"
+                      />
+                      {/* Label overlay (visible at rest) */}
+                      <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-ink/80 via-ink/40 to-transparent transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0">
+                        <div className="font-mono text-[11px] tracking-[0.18em] text-cream font-semibold mb-1">
+                          {c.label ?? "CASE STUDY"}
+                        </div>
+                        <h4 className="font-display text-xl text-cream leading-tight">
+                          {c.title}
+                        </h4>
+                      </div>
+                    </div>
+
+                    {/* Reveal layer */}
+                    <div
+                      className="absolute inset-0 flex flex-col bg-paper/95 backdrop-blur-sm p-6 md:p-7 opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
+                    >
+                      <div className="font-mono text-[11px] tracking-[0.18em] text-accent font-semibold mb-2">
+                        {c.label ?? "CASE STUDY"}
+                      </div>
+                      <h4 className="font-display text-xl md:text-2xl text-ink mb-2 leading-tight">
+                        {c.title}
+                      </h4>
+                      <div className="text-[11px] label-mono text-olive mb-3">{c.meta}</div>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-4 overflow-y-auto">
+                        {c.body}
+                      </p>
+                      {c.results && (
+                        <div className="mt-auto grid grid-cols-3 gap-3 pt-4 border-t border-rule/60">
+                          {c.results.map((r) => (
+                            <div key={r.label}>
+                              <div className="font-display text-lg text-olive leading-tight">{r.value}</div>
+                              <div className="text-[10px] text-muted-foreground mt-0.5 leading-snug">{r.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ) : idx === 3 ? (
                   <div key={i} className="border border-rule rounded-sm p-6 hover:border-olive transition-colors">
                     <div className="flex items-center gap-2 text-xs label-mono mb-3">
                       <span className="size-1.5 rounded-full bg-accent" />
