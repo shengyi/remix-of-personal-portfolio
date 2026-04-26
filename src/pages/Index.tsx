@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Moon, Sun, ArrowUpRight, ArrowRight, X } from "lucide-react";
+import { Moon, Sun, ArrowUpRight, ArrowRight, ArrowLeft, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import {
@@ -15,6 +15,7 @@ import {
   languages,
   experience,
   education,
+  type Case,
 } from "@/data/regina";
 import { Hero } from "@/components/hero/Hero";
 import brandPlaceholder from "@/assets/illustrations/brand-placeholder.png";
