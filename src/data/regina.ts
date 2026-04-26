@@ -17,6 +17,11 @@ import illoCustomerSegmentation from "@/assets/illustrations/customer-segmentati
 
 import wpEngineLogoExpand from "@/assets/media/wp-engine-logo-expand.mp4";
 
+import campaignOpenWeStand from "@/assets/campaigns/open-we-stand.png";
+import campaignABetterWay from "@/assets/campaigns/a-better-way.png";
+import campaignGoYou from "@/assets/campaigns/go-you.png";
+import campaignPeaceOfMind from "@/assets/campaigns/peace-of-mind.png";
+
 export const profile = {
   name: "Regina Yuan",
   eyebrow: "Brand & Growth Executive",
@@ -215,10 +220,13 @@ export const pillars: Pillar[] = [
       "The moments brands become household names. Tentpole campaigns that move culture and the P&L in the same breath — Super Bowl broadcasts, industry awards, and integrated programs that deliver both traffic spikes and brand equity.",
     cases: [
       {
+        label: "OPEN WE STAND",
         meta: "GoDaddy · 2020 · Pandemic response",
         title: "#OpenWeStand — coalition rally-cry for SMBs",
         body:
           "Led the creative and cross-brand coalition with Adobe, Cisco, LinkedIn, Mastercard, Microsoft, and Uber to support small businesses during COVID-19. GoDaddy's most effective campaign since rebrand.",
+        media: { type: "image", src: campaignOpenWeStand },
+        href: "https://www.ispot.tv/search/open-we-stand",
         results: [
           { value: "4.5B", label: "Impressions" },
           { value: "+12%", label: "Brand search queries" },
@@ -226,33 +234,44 @@ export const pillars: Pillar[] = [
         ],
       },
       {
+        label: "A BETTER WAY",
         meta: "DocuSign · 2022 · Agreement Cloud",
         title: "“A Better Way” — anchor brand campaign",
         body:
           "Anchor creative for DocuSign's transition to the Agreement Cloud category — one of DocuSign's best-performing LinkedIn campaigns.",
+        media: { type: "image", src: campaignABetterWay },
+        href: "https://www.ispot.tv/ad/b83b/docusign-a-better-way",
         results: [
           { value: "3.7M", label: "Views" },
           { value: "+44%", label: "QoQ web traffic" },
           { value: "21K", label: "New trial accounts" },
-          { value: "2.79×", label: "vs LinkedIn benchmark" },
         ],
       },
       {
+        label: "GO YOU",
         meta: "GoDaddy · 2016 · Brand pivot",
         title: "“Go You” — with Shaquille O'Neal",
         body:
           "Replaced the “It's Go Time” slogan with a more personal, encouraging message centered on the entrepreneur. Supported a year of 15% revenue growth and repositioned GoDaddy from infrastructure vendor to champion of the everyday founder.",
+        media: { type: "image", src: campaignGoYou },
+        href: "https://www.ispot.tv/ad/AfcX/godaddy-go-you-heads-of-cheese",
         results: [
           { value: "+15%", label: "Full-year revenue" },
           { value: "SMB <5", label: "Core target segment" },
         ],
       },
       {
-        meta: "WP Engine · 2024",
-        title: "Digiday Award nomination",
+        label: "PEACE OF MIND",
+        meta: "WP Engine · 2024 · Brand campaign",
+        title: "WordPress Peace of Mind",
         body:
-          "Integrated campaign delivering award-nominated creative and measurable pipeline — shortlisted at the Digiday Awards for brand and content excellence.",
-        results: [{ value: "105%", label: "Annual pipeline goal, sustained" }],
+          "Integrated brand campaign positioning WP Engine as the source of WordPress peace of mind — pairing customer-led storytelling with a measurable pipeline program that sustained 105% of annual pipeline goal.",
+        media: { type: "image", src: campaignPeaceOfMind },
+        href: "https://www.linkedin.com/posts/wordpresspeaceofmind-ugcPost-7129930297290194944-BLY8",
+        results: [
+          { value: "Digiday", label: "Best Ad nomination" },
+          { value: "105%", label: "Annual pipeline goal" },
+        ],
       },
     ],
   },
