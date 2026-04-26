@@ -73,6 +73,7 @@ export const pillars: Pillar[] = [
         label: "CATEGORY EXPANSION",
         meta: "WP Engine · 2023–Now",
         title: "Global rebrand & category repositioning",
+        illustration: illoCategoryExpansion,
         body:
           "Architected a comprehensive rebrand aligning Product, Sales, Marketing, and CX around a unified GTM narrative — repositioning WP Engine from hosting provider to WordPress platform leader powering 63% of the CMS web.",
         results: [
@@ -85,6 +86,7 @@ export const pillars: Pillar[] = [
         label: "IDENTITY TRANSFORMATION",
         meta: "GoDaddy · 2015–2021",
         title: "“Utility to iconic” brand transformation",
+        illustration: illoIdentityTransformation,
         body:
           "Led GoDaddy's first portfolio-wide brand strategy and brand measurement framework on a $25M annual budget — shifting brand perception from functional utility to aspirational platform for 20M+ creators and SMBs.",
         results: [
@@ -96,6 +98,7 @@ export const pillars: Pillar[] = [
         label: "M&A BRAND INTEGRATION",
         meta: "GoDaddy · WP Engine",
         title: "Brand portfolio playbook",
+        illustration: illoMaIntegration,
         body:
           "Built the M&A integration methodology for 60+ acquired brands at GoDaddy and portfolio positioning for NitroPack, ACF, and others at WP Engine — establishing sub-brand architecture, GTM playbooks, and integration frameworks that compound revenue.",
         results: [
@@ -107,6 +110,7 @@ export const pillars: Pillar[] = [
         label: "CUSTOMER SEGMENTATION",
         meta: "GoDaddy · Enterprise-wide",
         title: "SMB segmentation & persona system",
+        illustration: illoCustomerSegmentation,
         body:
           "Led the research, synthesis, and activation of GoDaddy's enterprise-wide customer segmentation — building a McKinsey-validated six-segment SMB model and a full persona library spanning Independents, Partners, and Domain Investors that became the operating system for product, marketing, and CX strategy across 20M+ customers globally.",
         results: [
