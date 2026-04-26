@@ -44,6 +44,10 @@ export type Case = {
   title: string;
   body: string;
   results?: { value: string; label: string }[];
+  /** Optional short eyebrow label, e.g. "CATEGORY EXPANSION" */
+  label?: string;
+  /** Optional illustration for visual-first treatments */
+  illustration?: string;
 };
 
 export type Pillar = {
@@ -61,6 +65,7 @@ export const pillars: Pillar[] = [
       "Brand evolution, category creation, and M&A portfolio architecture. Translating market insight into positioning that changes how a category is valued — and acquired companies into a coherent house of brands.",
     cases: [
       {
+        label: "CATEGORY EXPANSION",
         meta: "WP Engine · 2023–Now",
         title: "Global rebrand & category repositioning",
         body:
@@ -72,6 +77,7 @@ export const pillars: Pillar[] = [
         ],
       },
       {
+        label: "IDENTITY TRANSFORMATION",
         meta: "GoDaddy · 2015–2021",
         title: "“Utility to iconic” brand transformation",
         body:
@@ -82,13 +88,26 @@ export const pillars: Pillar[] = [
         ],
       },
       {
-        meta: "M&A Portfolio",
-        title: "House-of-brands playbook",
+        label: "M&A BRAND INTEGRATION",
+        meta: "GoDaddy · WP Engine",
+        title: "Brand portfolio playbook",
         body:
-          "Built the M&A integration methodology for 60+ acquired brands at GoDaddy and portfolio positioning for NitroPack, ACF and others at WP Engine — establishing sub-brand architecture, GTM playbooks, and integration frameworks that compound revenue.",
+          "Built the M&A integration methodology for 60+ acquired brands at GoDaddy and portfolio positioning for NitroPack, ACF, and others at WP Engine — establishing sub-brand architecture, GTM playbooks, and integration frameworks that compound revenue.",
         results: [
           { value: "60+", label: "Brands integrated" },
           { value: "10%", label: "Net revenue contribution" },
+        ],
+      },
+      {
+        label: "CUSTOMER SEGMENTATION",
+        meta: "GoDaddy · Enterprise-wide",
+        title: "SMB segmentation & persona system",
+        body:
+          "Led the research, synthesis, and activation of GoDaddy's enterprise-wide customer segmentation — building a McKinsey-validated six-segment SMB model and a full persona library spanning Independents, Partners, and Domain Investors that became the operating system for product, marketing, and CX strategy across 20M+ customers globally.",
+        results: [
+          { value: "6", label: "Segments defined" },
+          { value: "10+", label: "Personas activated" },
+          { value: "8", label: "Strategic workstreams aligned" },
         ],
       },
     ],
