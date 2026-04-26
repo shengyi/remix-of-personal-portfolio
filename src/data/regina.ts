@@ -15,6 +15,8 @@ import illoIdentityTransformation from "@/assets/illustrations/identity-transfor
 import illoMaIntegration from "@/assets/illustrations/ma-brand-integration.png";
 import illoCustomerSegmentation from "@/assets/illustrations/customer-segmentation.png";
 
+import wpEngineLogoExpand from "@/assets/media/wp-engine-logo-expand.mp4";
+
 export const profile = {
   name: "Regina Yuan",
   eyebrow: "Brand & Growth Executive",
@@ -53,6 +55,10 @@ export type Case = {
   label?: string;
   /** Optional illustration for visual-first treatments */
   illustration?: string;
+  /** Optional media: video URL (mp4) or image for media-forward layouts */
+  media?: { type: "video" | "image"; src: string; poster?: string };
+  /** Optional external link (e.g., live design system) */
+  href?: string;
 };
 
 export type Pillar = {
