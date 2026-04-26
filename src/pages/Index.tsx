@@ -189,7 +189,7 @@ function Pillars() {
               }
             >
               {idx === 2 && <CreativeShowcase cases={p.cases} />}
-              {p.cases.map((c, i) =>
+              {idx !== 2 && p.cases.map((c, i) =>
                 idx === 0 ? (
                   <article
                     key={i}
