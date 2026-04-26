@@ -1026,10 +1026,9 @@ export default function Index() {
       <Metrics />
       <LogoStrip />
       <Pillars />
-      <Flagship />
+      <Global />
       <Press />
       <Endorsements />
-      <Global />
       <Experience />
       <Contact />
       <Footer />
