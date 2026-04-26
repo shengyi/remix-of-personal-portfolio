@@ -10,6 +10,11 @@ import natGeoLogo from "@/assets/logos/national-geographic.png";
 import googleLogo from "@/assets/logos/google.png";
 import cesLogo from "@/assets/logos/ces.png";
 
+import illoCategoryExpansion from "@/assets/illustrations/category-expansion.png";
+import illoIdentityTransformation from "@/assets/illustrations/identity-transformation.png";
+import illoMaIntegration from "@/assets/illustrations/ma-brand-integration.png";
+import illoCustomerSegmentation from "@/assets/illustrations/customer-segmentation.png";
+
 export const profile = {
   name: "Regina Yuan",
   eyebrow: "Brand & Growth Executive",
