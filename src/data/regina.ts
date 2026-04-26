@@ -154,6 +154,18 @@ export const pillars: Pillar[] = [
           { value: "2×", label: "Content production volume" },
         ],
       },
+      {
+        label: "CONTENT & VISIBILITY",
+        meta: "WP Engine · GoDaddy · DocuSign",
+        title: "SERP to AEO — staying ahead of the visibility curve",
+        body:
+          "Content strategy as brand visibility. Built thought-leadership programs that dominated search results at GoDaddy and DocuSign, then led WP Engine's early transition to Answer Engine Optimization — partnering with Omniscient Digital to rank across ChatGPT, Perplexity, Claude, and Gemini before competitors treated LLM visibility as a channel.",
+        results: [
+          { value: "AEO", label: "Early-mover position" },
+          { value: "4 LLMs", label: "Measured visibility" },
+          { value: "SERP", label: "Sustained authority" },
+        ],
+      },
     ],
   },
   {
