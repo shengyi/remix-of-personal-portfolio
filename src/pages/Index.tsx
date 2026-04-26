@@ -236,6 +236,73 @@ function Pillars() {
                       </div>
                     </div>
                   </article>
+                ) : idx === 1 ? (
+                  (() => {
+                    // Bento spans across a 6-col grid (sm+)
+                    const spans = [
+                      "sm:col-span-3 sm:row-span-2",
+                      "sm:col-span-3 sm:row-span-1",
+                      "sm:col-span-3 sm:row-span-1",
+                      "sm:col-span-6 sm:row-span-1",
+                    ];
+                    const headline = c.results?.[0]?.value ?? "";
+                    return (
+                      <div
+                        key={i}
+                        className={`group [perspective:1200px] ${spans[i] ?? ""}`}
+                      >
+                        <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]">
+                          {/* Front */}
+                          <div
+                            tabIndex={0}
+                            className="absolute inset-0 [backface-visibility:hidden] rounded-md border border-rule bg-paper hover:border-olive focus:border-olive focus:outline-none transition-colors p-6 flex flex-col justify-between overflow-hidden"
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="font-mono text-[11px] tracking-[0.18em] text-accent font-semibold">
+                                {c.label ?? c.meta}
+                              </div>
+                              <div className="font-mono text-[10px] text-muted-foreground tracking-wider">
+                                ↻ FLIP
+                              </div>
+                            </div>
+                            <div>
+                              {headline && (
+                                <div className="font-display text-5xl md:text-6xl text-olive leading-none mb-3">
+                                  {headline}
+                                </div>
+                              )}
+                              <h4 className="font-display text-xl md:text-2xl text-ink leading-tight">
+                                {c.title}
+                              </h4>
+                            </div>
+                          </div>
+                          {/* Back */}
+                          <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-md border border-olive bg-cream-deep/70 p-6 flex flex-col overflow-hidden">
+                            <div className="font-mono text-[11px] tracking-[0.18em] text-olive font-semibold mb-3">
+                              {c.label ?? c.meta}
+                            </div>
+                            <p className="text-sm text-ink leading-relaxed mb-4 overflow-y-auto">
+                              {c.body}
+                            </p>
+                            {c.results && (
+                              <div className="mt-auto grid grid-cols-3 gap-3 pt-3 border-t border-olive/30">
+                                {c.results.map((r) => (
+                                  <div key={r.label}>
+                                    <div className="font-display text-lg text-olive leading-tight">
+                                      {r.value}
+                                    </div>
+                                    <div className="text-[10px] text-muted-foreground mt-0.5 leading-snug">
+                                      {r.label}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()
                 ) : idx === 3 ? (
                   <div key={i} className="border border-rule rounded-sm p-6 hover:border-olive transition-colors">
                     <div className="flex items-center gap-2 text-xs label-mono mb-3">
