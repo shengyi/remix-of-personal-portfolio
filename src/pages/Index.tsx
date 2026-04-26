@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Moon, Sun, ArrowUpRight, ArrowRight, ArrowLeft, X } from "lucide-react";
+import { Moon, Sun, ArrowUpRight, ArrowRight, ArrowLeft, X, Play } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import {
@@ -262,6 +262,120 @@ function CreativeShowcase({ cases }: { cases: Case[] }) {
             </div>
           </button>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function CampaignTabs({ cases }: { cases: Case[] }) {
+  const [active, setActive] = useState(0);
+  const current = cases[active];
+  const topResults = (current.results ?? []).slice(0, 3);
+
+  return (
+    <div className="rounded-md border border-rule bg-paper overflow-hidden">
+      {/* Tab strip */}
+      <div className="grid grid-cols-2 md:grid-cols-4 border-b border-rule">
+        {cases.map((c, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className={`relative text-left px-5 py-4 border-l first:border-l-0 border-rule transition-colors ${
+              i === active
+                ? "bg-paper text-ink"
+                : "bg-cream-deep/30 text-muted-foreground hover:text-ink hover:bg-cream-deep/50"
+            }`}
+          >
+            {i === active && (
+              <span className="absolute top-0 left-0 right-0 h-0.5 bg-olive" />
+            )}
+            <div className="font-mono text-[10px] tracking-[0.18em] mb-1">
+              {c.label ?? `0${i + 1}`}
+            </div>
+            <div className="font-display text-sm leading-tight line-clamp-2">
+              {c.title}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {/* Body */}
+      <div className="grid md:grid-cols-[6fr_5fr] gap-0">
+        {/* Left — device mockup with thumbnail */}
+        <div className="relative bg-cream-deep/40 p-6 md:p-10 flex items-center justify-center min-h-[360px] md:min-h-[460px]">
+          <a
+            href={current.href}
+            target="_blank"
+            rel="noopener"
+            aria-label={`Watch ${current.title}`}
+            className="group relative block w-full max-w-md"
+          >
+            {/* Browser-style chrome */}
+            <div className="rounded-lg overflow-hidden border border-rule bg-[#0b0b10] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)]">
+              <div className="flex items-center gap-1.5 px-3 py-2 bg-[#1a1a20] border-b border-black/40">
+                <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+                <span className="size-2.5 rounded-full bg-[#febc2e]" />
+                <span className="size-2.5 rounded-full bg-[#28c840]" />
+              </div>
+              <div className="relative aspect-video overflow-hidden bg-black">
+                <img
+                  src={current.media?.src}
+                  alt={current.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                {/* Hover tint */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
+                {/* Play button */}
+                <div className="absolute inset-0 grid place-items-center">
+                  <span className="size-16 rounded-full bg-paper/95 text-ink grid place-items-center shadow-lg group-hover:scale-110 transition-transform">
+                    <Play className="size-7 translate-x-0.5 fill-current" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="mt-3 text-center font-mono text-[11px] text-olive tracking-wider">
+              Watch on {current.href?.includes("ispot") ? "iSpot.tv" : current.href?.includes("linkedin") ? "LinkedIn" : "video"} ↗
+            </div>
+          </a>
+        </div>
+
+        {/* Right — copy + metrics */}
+        <div className="p-6 md:p-10 flex flex-col">
+          <div className="text-[11px] label-mono text-olive mb-3">{current.meta}</div>
+          <h4 className="font-display text-2xl md:text-3xl text-ink mb-4 leading-tight">
+            {current.title}
+          </h4>
+          <p className="text-[15px] text-muted-foreground leading-relaxed mb-6">
+            {current.body}
+          </p>
+
+          {topResults.length > 0 && (
+            <div className="mt-auto grid grid-cols-3 gap-4 pt-6 border-t border-rule/60">
+              {topResults.map((r) => (
+                <div key={r.label}>
+                  <div className="font-display text-2xl md:text-3xl text-olive leading-tight">
+                    {r.value}
+                  </div>
+                  <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                    {r.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {current.href && (
+            <a
+              href={current.href}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-1.5 mt-5 text-sm text-olive hover:text-ink transition-colors w-fit"
+            >
+              Watch full spot <ArrowUpRight className="size-3.5" />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
