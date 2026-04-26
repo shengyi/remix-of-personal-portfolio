@@ -609,59 +609,6 @@ function Pillars() {
   );
 }
 
-function Flagship() {
-  return (
-    <section id="flagship" className="bg-cream-deep/60 border-y border-rule">
-      <div className="container-page py-24 md:py-32">
-        <div className="mb-16 grid md:grid-cols-[180px_1fr] gap-6 md:gap-12 items-baseline">
-          <div className="label-mono pt-2 border-t border-olive w-fit pr-6">
-            02 / Flagship work
-          </div>
-          <h2 className="display text-[clamp(36px,5vw,64px)] text-ink max-w-3xl">
-            Two <em>transformations,</em> documented.
-          </h2>
-        </div>
-        <p className="text-lg max-w-2xl mb-16 text-muted-foreground leading-relaxed">
-          The brand moves senior hiring committees actually dig into — each with the
-          strategic thesis, the craft, and the numbers.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-          {flagshipCases.map((c) => (
-            <motion.a
-              key={c.title}
-              {...fadeUp}
-              href={c.href}
-              target="_blank"
-              rel="noopener"
-              className="group relative bg-paper border border-rule hover:border-olive p-8 md:p-10 rounded-sm transition-colors"
-            >
-              <div className="label-mono mb-6 text-olive">
-                {c.eyebrow}
-              </div>
-              <h3 className="font-display text-3xl md:text-4xl mb-4 leading-tight text-ink">
-                {c.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">{c.body}</p>
-              <div className="flex flex-wrap gap-2">
-                {c.chips.map((chip) => (
-                  <span
-                    key={chip}
-                    className="text-xs px-3 py-1 rounded-full border border-rule text-ink/80 bg-background"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
-              <ArrowUpRight className="absolute top-8 right-8 size-5 text-olive group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </motion.a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Press() {
   const Item = ({ outlet, title, href }: { outlet: string; title: string; href?: string }) => {
     const Comp: any = href ? "a" : "div";
