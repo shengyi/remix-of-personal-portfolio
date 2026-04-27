@@ -12,6 +12,8 @@ import cesLogo from "@/assets/logos/ces.png";
 
 import illoIdentityTransformation from "@/assets/illustrations/identity-transformation.png";
 import illoMaIntegration from "@/assets/illustrations/ma-brand-integration.png";
+import illoCategoryExpansion from "@/assets/illustrations/category-expansion.png";
+import illoCustomerSegmentation from "@/assets/illustrations/customer-segmentation.png";
 
 import wpEngineLogoExpand from "@/assets/media/wp-engine-logo-expand.mp4";
 
@@ -22,23 +24,21 @@ import campaignPeaceOfMind from "@/assets/campaigns/peace-of-mind.png";
 
 export const profile = {
   name: "Regina Yuan",
-  eyebrow: "Brand & Growth Executive",
+  eyebrow: "Brand · Growth · GTM",
   location: "Cupertino, CA",
-  email: "regina@reginayuan.com",
+  email: "regina.shengyi@gmail.com",
   phone: "+1 315 484 6882",
   website: "reginayuan.com",
   linkedin: "https://www.linkedin.com/in/reginayuan",
-  heroMeta: ["15+ yrs", "B2B · B2C SaaS", "$25M+ budgets", "Cupertino, CA"],
-  heroIntro:
-    "Senior brand and marketing leader architecting category-defining brands at high-velocity consumer and SaaS companies — from GoDaddy's “utility-to-iconic” transformation to WP Engine's global rebrand and DocuSign's Agreement Cloud expansion.",
+  resume: "/Resume_Regina_Yuan_Brand.pdf",
+  // Multi-paragraph hero intro (replaces the old meta tags)
+  intro: [
+    "Senior brand, growth, and GTM leader across B2B and B2C.",
+    "I think in systems, write in stories, and measure in outcomes.",
+    "I've spent my career architecting category-defining brands at WP Engine, GoDaddy, and DocuSign — building the strategies, frameworks, and narratives that move markets, not just metrics.",
+    "Ninety percent of what I do runs on systems over campaigns, evidence over instinct, and stories tied directly to P&L. The other ten percent is the part most strategists skip: the emotional truth that makes the ninety percent work.",
+  ],
 };
-
-export const metrics = [
-  { value: "150", suffix: "%", label: "Brand awareness lift", sub: "WP Engine rebrand" },
-  { value: "60", suffix: "+", label: "M&A brands integrated", sub: "GoDaddy portfolio" },
-  { value: "5", suffix: "×", label: "Channel efficiency", sub: "data-driven framework" },
-  { value: "10", suffix: "×", label: "Testing velocity", sub: "DocuSign GTM culture" },
-];
 
 export const logos = [
   { name: "WP Engine", src: wpEngineLogo },
@@ -58,9 +58,9 @@ export type Case = {
   label?: string;
   /** Optional illustration for visual-first treatments */
   illustration?: string;
-  /** Optional media: video URL (mp4) or image for media-forward layouts */
-  media?: { type: "video" | "image"; src: string; poster?: string };
-  /** Optional external link (e.g., live design system) */
+  /** Optional media: video URL (mp4), YouTube id, or image */
+  media?: { type: "video" | "image" | "youtube"; src: string; poster?: string };
+  /** Optional external link (e.g., live design system, article, video) */
   href?: string;
 };
 
@@ -71,312 +71,273 @@ export type Pillar = {
   cases: Case[];
 };
 
-export const pillars: Pillar[] = [
-  {
-    num: "01",
-    title: "Brand Strategy",
-    lede:
-      "Brand evolution, category creation, and M&A portfolio architecture. Translating market insight into positioning that changes how a category is valued — and acquired companies into a coherent house of brands.",
-    cases: [
-      {
-        label: "CATEGORY EXPANSION",
-        meta: "WP Engine · 2023–Now",
-        title: "Global rebrand & category repositioning",
-        body:
-          "Architected a comprehensive rebrand aligning Product, Sales, Marketing, and CX around a unified GTM narrative — repositioning WP Engine from hosting provider to WordPress platform leader powering 63% of the CMS web. Covered in MarTech Series.",
-        href: "https://martechseries.com/mts-insights/interviews/martech-interview-with-regina-yuan-head-of-brand-wp-engine/",
-        results: [
-          { value: "150%", label: "Brand awareness lift" },
-          { value: "200%", label: "Search interest surge" },
-          { value: "100%", label: "Stakeholder sentiment" },
-          { value: "5×", label: "Channel efficiency" },
-          { value: "Digiday", label: "Shortlist" },
-        ],
-      },
-      {
-        label: "IDENTITY TRANSFORMATION",
-        meta: "GoDaddy · 2015–2021",
-        title: "From utility to iconic.",
-        body:
-          "Retired the cartoonish mascot, authored a new “GO” monogram (two letters forming a heart), and translated brand empathy into commercial growth across a $4B subscription platform serving 20M+ customers. Featured in Fast Company and A Change of Brand podcast.",
-        href: "https://www.fastcompany.com/90450828/godaddys-new-logo-gets-out-of-the-way-heres-why-thats-good",
-        results: [
-          { value: "+20%", label: "Traffic" },
-          { value: "+12%", label: "Brand search" },
-          { value: "+11.5%", label: "Revenue '19→'20" },
-          { value: "+40%", label: "E-commerce" },
-          { value: "−25 → +25", label: "Preference swing" },
-        ],
-      },
-      {
-        label: "M&A BRAND INTEGRATION",
-        meta: "GoDaddy · WP Engine",
-        title: "Brand portfolio playbook",
-        body:
-          "Built the M&A integration methodology for 60+ acquired brands at GoDaddy and portfolio positioning for NitroPack, ACF, and others at WP Engine — establishing sub-brand architecture, GTM playbooks, and integration frameworks that compound revenue.",
-        results: [
-          { value: "60+", label: "Brands integrated" },
-          { value: "10%", label: "Net revenue contribution" },
-        ],
-      },
-      {
-        label: "CUSTOMER SEGMENTATION",
-        meta: "GoDaddy · Enterprise-wide",
-        title: "SMB segmentation & persona system",
-        body:
-          "Led the research, synthesis, and activation of GoDaddy's enterprise-wide customer segmentation — building a McKinsey-validated six-segment SMB model and a full persona library spanning Independents, Partners, and Domain Investors that became the operating system for product, marketing, and CX strategy across 20M+ customers globally.",
-        results: [
-          { value: "6", label: "Segments defined" },
-          { value: "10+", label: "Personas activated" },
-          { value: "8", label: "Strategic workstreams aligned" },
-        ],
-      },
-    ],
-  },
-  {
-    num: "02",
-    title: "Brand Intelligence",
-    lede:
-      "Brand as a measurable, compounding asset. Measurement frameworks that drive business decisions, media optimization that bends the efficiency curve, and testing culture that turns instinct into evidence.",
-    cases: [
-      {
-        meta: "Measurement Framework",
-        title: "Brand tracking → business decisions",
-        body:
-          "Built enterprise brand measurement and insights programs at GoDaddy ($15M budget) and DocuSign — persona development, creative testing, and advertising ROI modeling that elevated brand from cost center to C-suite strategic input.",
-        results: [{ value: "15%", label: "DocuSign brand consideration lift" }],
-      },
-      {
-        meta: "Media & Channel Efficiency",
-        title: "5× channel efficiency, −25% churn",
-        body:
-          "Optimized media mix and creative strategy at WP Engine through data-driven performance frameworks spanning digital and channel marketing — lifting efficiency 5× and reducing churn by 25% across mid-market, agency, and pro-sumer segments.",
-        results: [
-          { value: "5×", label: "Channel efficiency" },
-          { value: "−25%", label: "Customer churn" },
-        ],
-      },
-      {
-        meta: "Testing Culture",
-        title: "10× testing velocity at DocuSign",
-        body:
-          "Established a systematic A/B testing, PSA optimization, and geo-targeting discipline — turning marketing into a learning engine and increasing testing velocity by an order of magnitude across campaigns, creative, and channels.",
-        results: [
-          { value: "10×", label: "Experiments per quarter" },
-          { value: "2×", label: "Content production volume" },
-        ],
-      },
-      {
-        label: "CONTENT & VISIBILITY",
-        meta: "WP Engine · GoDaddy · DocuSign",
-        title: "SERP to AEO — staying ahead of the visibility curve",
-        body:
-          "Content strategy as brand visibility. Built thought-leadership programs that dominated search results at GoDaddy and DocuSign, then led WP Engine's early transition to Answer Engine Optimization — partnering with Omniscient Digital to rank across ChatGPT, Perplexity, Claude, and Gemini before competitors treated LLM visibility as a channel.",
-        results: [
-          { value: "AEO", label: "Early-mover position" },
-          { value: "4 LLMs", label: "Measured visibility" },
-          { value: "SERP", label: "Sustained authority" },
-        ],
-      },
-    ],
-  },
-  {
-    num: "03",
-    title: "Creative Strategy & Visual Identity",
-    lede:
-      "Design systems as brand equity. Consistency at scale is what separates campaigns from a brand — I build the creative systems that let hundreds of touchpoints speak with one voice.",
-    cases: [
-      {
-        label: "WP ENGINE",
-        meta: "WP Engine Design System · launching",
-        title: "One visual language across 20+ brands",
-        body:
-          "Re-envisioned creative identity and component system powering the global rebrand — one scalable visual language across product, marketing, and 20+ acquired brands. Logo expansion system shown.",
-        media: { type: "video", src: wpEngineLogoExpand },
-      },
-      {
-        label: "GODADDY",
-        meta: "GoDaddy Design System · godaddy.design",
-        title: "Creative identity unifying 60+ brands",
-        body:
-          "Creative identity and design system unifying 60+ portfolio brands — the foundation beneath the “utility to iconic” brand shift, symbolized by the new “GO” logomark forming a heart.",
-        href: "https://godaddy.design",
-        media: { type: "image", src: illoIdentityTransformation },
-      },
-      {
-        label: "DOCUSIGN",
-        meta: "DocuSign Brand System · brand.docusign.com",
-        title: "Agreement Cloud brand platform",
-        body:
-          "Contributed to the brand & creative platform supporting the “Agreement Cloud” repositioning, with messaging hierarchy and visual guidelines spanning 11 international markets.",
-        href: "https://brand.docusign.com",
-        media: { type: "image", src: illoMaIntegration },
-      },
-    ],
-  },
-  {
-    num: "04",
-    title: "Campaign Strategy",
-    lede:
-      "The moments brands become household names. Tentpole campaigns that move culture and the P&L in the same breath — Super Bowl broadcasts, industry awards, and integrated programs that deliver both traffic spikes and brand equity.",
-    cases: [
-      {
-        label: "OPEN WE STAND",
-        meta: "GoDaddy · 2020 · Pandemic response",
-        title: "#OpenWeStand — coalition rally-cry for SMBs",
-        body:
-          "Led the creative and cross-brand coalition with Adobe, Cisco, LinkedIn, Mastercard, Microsoft, and Uber to support small businesses during COVID-19. GoDaddy's most effective campaign since rebrand.",
-        media: { type: "image", src: campaignOpenWeStand },
-        href: "https://www.ispot.tv/search/open-we-stand",
-        results: [
-          { value: "4.5B", label: "Impressions" },
-          { value: "+12%", label: "Brand search queries" },
-          { value: "65M+", label: "Anthem views" },
-        ],
-      },
-      {
-        label: "A BETTER WAY",
-        meta: "DocuSign · 2022 · Agreement Cloud",
-        title: "“A Better Way” — anchor brand campaign",
-        body:
-          "Anchor creative for DocuSign's transition to the Agreement Cloud category — one of DocuSign's best-performing LinkedIn campaigns.",
-        media: { type: "image", src: campaignABetterWay },
-        href: "https://www.ispot.tv/ad/b83b/docusign-a-better-way",
-        results: [
-          { value: "3.7M", label: "Views" },
-          { value: "+44%", label: "QoQ web traffic" },
-          { value: "21K", label: "New trial accounts" },
-        ],
-      },
-      {
-        label: "GO YOU",
-        meta: "GoDaddy · 2016 · Brand pivot",
-        title: "“Go You” — with Shaquille O'Neal",
-        body:
-          "Replaced the “It's Go Time” slogan with a more personal, encouraging message centered on the entrepreneur. Supported a year of 15% revenue growth and repositioned GoDaddy from infrastructure vendor to champion of the everyday founder.",
-        media: { type: "image", src: campaignGoYou },
-        href: "https://www.ispot.tv/ad/AfcX/godaddy-go-you-heads-of-cheese",
-        results: [
-          { value: "+15%", label: "Full-year revenue" },
-          { value: "SMB <5", label: "Core target segment" },
-        ],
-      },
-      {
-        label: "PEACE OF MIND",
-        meta: "WP Engine · 2024 · Brand campaign",
-        title: "WordPress Peace of Mind",
-        body:
-          "Integrated brand campaign positioning WP Engine as the source of WordPress peace of mind — pairing customer-led storytelling with a measurable pipeline program that sustained 105% of annual pipeline goal.",
-        media: { type: "image", src: campaignPeaceOfMind },
-        href: "https://www.linkedin.com/posts/wordpresspeaceofmind-ugcPost-7129930297290194944-BLY8",
-        results: [
-          { value: "Digiday", label: "Best Ad nomination" },
-          { value: "105%", label: "Annual pipeline goal" },
-        ],
-      },
-    ],
-  },
-];
+/* ---------------- 01 BRAND STRATEGY ---------------- */
 
-export const flagshipCases = [
-  {
-    eyebrow: "Case Study · GoDaddy · 2015–2021",
-    title: "From utility to iconic.",
-    body:
-      "Retired the cartoonish mascot, authored a new “GO” monogram (two letters forming a heart), and translated brand empathy into commercial growth. Featured in Fast Company and A Change of Brand podcast.",
-    chips: [
-      "+20% traffic",
-      "+12% brand search",
-      "+11.5% revenue '19→'20",
-      "+40% e-commerce",
-      "60+ M&A brands",
-    ],
-    href: "https://www.fastcompany.com/90450828/godaddys-new-logo-gets-out-of-the-way-heres-why-thats-good",
-  },
-  {
-    eyebrow: "Case Study · WP Engine · 2023 – present",
-    title: "A rebrand for the WordPress era.",
-    body:
-      "Led a global rebrand aligning product, sales, marketing, and CX around a unified GTM narrative — category repositioning plus an M&A integration playbook for NitroPack, ACF and 20+ brands. Covered in MarTech Series.",
-    chips: [
-      "+150% awareness",
-      "+200% search interest",
-      "100% stakeholder sentiment",
-      "Digiday shortlist",
-      "5× channel efficiency",
-    ],
-    href: "https://martechseries.com/mts-insights/interviews/martech-interview-with-regina-yuan-head-of-brand-wp-engine/",
-  },
-];
+export const brandStrategy: Pillar = {
+  num: "01",
+  title: "Brand Strategy",
+  lede:
+    "Brand evolution, category creation, and portfolio management. My work translates market insight into strategic positioning that reshapes perception and builds long-term brand equity across complex, multi-brand environments.",
+  cases: [
+    {
+      label: "CATEGORY EXPANSION",
+      meta: "WP Engine · 2023 — Now",
+      title: "Global rebrand & category repositioning",
+      body:
+        "Architected a comprehensive rebrand aligning Product, Sales, Marketing, and CX around a unified GTM narrative — repositioning WP Engine from hosting provider to WordPress platform leader powering 63% of the CMS web. Covered in MarTech Series.",
+      href: "https://martechseries.com/mts-insights/interviews/martech-interview-with-regina-yuan-head-of-brand-wp-engine/",
+      // WP Engine logo-expand video (was in Creative Strategy, moved here per request)
+      media: { type: "video", src: wpEngineLogoExpand },
+      results: [
+        { value: "150%", label: "Brand awareness lift" },
+        { value: "200%", label: "Search interest surge" },
+        { value: "100%", label: "Stakeholder sentiment" },
+        { value: "5×", label: "Channel efficiency" },
+        { value: "Digiday", label: "Shortlist" },
+      ],
+    },
+    {
+      label: "IDENTITY TRANSFORMATION",
+      meta: "GoDaddy · 2015 — 2021",
+      title: "From utility to iconic.",
+      body:
+        "Retired the cartoonish mascot, authored a new “GO” monogram (two letters forming a heart), and translated brand empathy into commercial growth across a $4B subscription platform serving 20M+ customers. Featured in Fast Company and A Change of Brand podcast.",
+      href: "https://www.fastcompany.com/90450828/godaddys-new-logo-gets-out-of-the-way-heres-why-thats-good",
+      // GoDaddy "From Utility to Iconic" manifesto on YouTube
+      media: {
+        type: "youtube",
+        src: "QCyl-vImWaY",
+        poster: "https://img.youtube.com/vi/QCyl-vImWaY/maxresdefault.jpg",
+      },
+      results: [
+        { value: "+20%", label: "Traffic" },
+        { value: "+12%", label: "Brand search" },
+        { value: "+11.5%", label: "Revenue '19→'20" },
+        { value: "+40%", label: "E-commerce" },
+        { value: "−25 → +25", label: "Preference swing" },
+      ],
+    },
+    {
+      label: "M&A BRAND INTEGRATION",
+      meta: "GoDaddy · WP Engine",
+      title: "Brand portfolio playbook",
+      body:
+        "Built the M&A integration methodology for 60+ acquired brands at GoDaddy and portfolio positioning for NitroPack, ACF, and others at WP Engine — establishing sub-brand architecture, GTM playbooks, and integration frameworks that compound revenue.",
+      media: { type: "image", src: illoMaIntegration },
+      results: [
+        { value: "60+", label: "Brands integrated" },
+        { value: "10%", label: "Net revenue contribution" },
+      ],
+    },
+    {
+      label: "CUSTOMER SEGMENTATION",
+      meta: "GoDaddy · Enterprise-wide",
+      title: "SMB segmentation & persona system",
+      body:
+        "Led the research, synthesis, and activation of GoDaddy's enterprise-wide customer segmentation — building a McKinsey-validated six-segment SMB model and a full persona library spanning Independents, Partners, and Domain Investors that became the operating system for product, marketing, and CX strategy across 20M+ customers globally.",
+      media: { type: "image", src: illoCustomerSegmentation },
+      results: [
+        { value: "6", label: "Segments defined" },
+        { value: "10+", label: "Personas activated" },
+        { value: "8", label: "Strategic workstreams aligned" },
+      ],
+    },
+  ],
+};
 
-export const press = [
-  {
-    outlet: "MarTech Series · Interview",
-    title: "MarTech Interview with Regina Yuan, Head of Brand, WP Engine",
-    href: "https://martechseries.com/mts-insights/interviews/martech-interview-with-regina-yuan-head-of-brand-wp-engine/",
-  },
-  {
-    outlet: "Fast Company",
-    title: "GoDaddy's new logo gets out of the way — here's why that's good",
-    href: "https://www.fastcompany.com/90450828/godaddys-new-logo-gets-out-of-the-way-heres-why-thats-good",
-  },
-  {
-    outlet: "A Change of Brand · Podcast",
-    title: "GoDaddy, with Chris Rushing — the brand evolution story",
-    href: "https://www.achangeofbrand.com/episodes/godaddy-with-chris-rushing",
-  },
-  {
-    outlet: "GoDaddy Newsroom · 2020",
-    title: "#OpenWeStand coalition grows — Adobe, Cisco, LinkedIn, Mastercard, Microsoft, Uber",
-    href: "https://aboutus.godaddy.net/newsroom/news-releases/press-release-details/2020/GoDaddys-OpenWeStand-Coalition-Grows-with-Adobe-Cisco-LinkedIn-Mastercard-Microsoft-and-Uber-Supporting-Small-Businesses-During-COVID-19/default.aspx",
-  },
-];
+/* ---------------- 02 BRAND INTELLIGENCE ---------------- */
 
-export const awards = [
-  {
-    outlet: "Digiday Video & TV Awards",
-    title: "WP Engine shortlisted alongside Adobe, Salesforce, Bloomberg, Samsung",
-    href: "https://digiday.com/media/adobe-barkley-cnbc-news-salesforce-samsung-and-bloomberg-are-among-this-years-digiday-video-and-tv-awards-shortlist-nominees/",
-  },
-  {
-    outlet: "GoDaddy #OpenWeStand · 2020",
-    title: "Most effective GoDaddy campaign since rebrand — 4.5B impressions",
-  },
-  {
-    outlet: "CES Asia · Inaugural year",
-    title: "Launched CES Asia — exceeded all inaugural KPIs",
-  },
-  {
-    outlet: "National Geographic · First Asia fund",
-    title: "Developed NGS's first Global Exploration Fund — Asia program",
-  },
-];
+export type IntelCard = {
+  icon: "gauge" | "target" | "flask" | "search" | "trending";
+  label: string;
+  title: string;
+  body: string;
+  metric?: string;
+};
 
-export const endorsements = [
-  {
-    quote:
-      "Regina rebuilt the brand measurement function from the ground up — turning brand from a cost center into an input the C-suite actually argued about in planning.",
-    role: "Former CMO · Subscription SaaS",
-    context: "On GoDaddy “utility to iconic” work · $15M measurement program",
-  },
-  {
-    quote:
-      "She carries a rare combination — executive posture, creative taste, and the quantitative discipline to defend both. The rebrand landed because every team felt heard and every result was measurable.",
-    role: "Cross-functional Partner · WP Engine",
-    context: "On global rebrand · 100% positive stakeholder sentiment",
-  },
-  {
-    quote:
-      "Regina thinks in markets, not campaigns. The maturity model she built changed how we prioritized international investment for the entire company.",
-    role: "Former Strategy Lead · DocuSign",
-    context: "On 11-market expansion framework · 18% of revenue",
-  },
-];
+export const brandIntelligence = {
+  num: "02",
+  title: "Brand Intelligence",
+  lede:
+    "Brand as a measurable, compounding asset. Five disciplines — escalating from foundation to forward edge — that turn instinct into evidence and creative into commercial output.",
+  cards: [
+    {
+      icon: "gauge",
+      label: "MEASUREMENT",
+      title: "Brand tracking → business decisions",
+      body:
+        "Built enterprise brand measurement and insights programs at GoDaddy ($15M budget) and DocuSign — persona development, creative testing, and advertising ROI modeling that elevated brand from cost center to C-suite strategic input.",
+      metric: "+15% consideration",
+    },
+    {
+      icon: "target",
+      label: "MEDIA EFFICIENCY",
+      title: "5× channel efficiency, −25% churn",
+      body:
+        "Optimized media mix and creative strategy at WP Engine through data-driven performance frameworks across mid-market, agency, and pro-sumer segments.",
+      metric: "5× efficiency",
+    },
+    {
+      icon: "flask",
+      label: "TESTING CULTURE",
+      title: "10× testing velocity",
+      body:
+        "Established a systematic A/B testing, PSA optimization, and geo-targeting discipline at DocuSign — turning marketing into a learning engine across campaigns, creative, and channels.",
+      metric: "10× velocity",
+    },
+    {
+      icon: "search",
+      label: "SERP AUTHORITY",
+      title: "Thought leadership at scale",
+      body:
+        "Built thought-leadership programs that dominated search results at GoDaddy and DocuSign — content strategy as brand visibility, ranked, measured, and compounded.",
+      metric: "SERP",
+    },
+    {
+      icon: "trending",
+      label: "AEO · LLM VISIBILITY",
+      title: "Staying ahead of the visibility curve",
+      body:
+        "Led WP Engine's early transition to Answer Engine Optimization with Omniscient Digital — ranking across ChatGPT, Perplexity, Claude, and Gemini before competitors treated LLM visibility as a channel.",
+      metric: "4 LLMs",
+    },
+  ] as IntelCard[],
+};
+
+/* ---------------- 03 CREATIVE STRATEGY ---------------- */
+
+export type CreativeCase = {
+  label: string;
+  brand: string;
+  meta: string;
+  title: string;
+  body: string;
+  href?: string;
+  /** Before/after compare slider art */
+  before?: string;
+  after?: string;
+  /** Optional fallback single image / video for cases without before-after */
+  media?: { type: "video" | "image"; src: string };
+};
+
+export const creativeStrategy = {
+  num: "03",
+  title: "Creative Strategy & Visual Identity",
+  lede:
+    "Design systems as brand equity. The creative systems that let hundreds of touchpoints — across product, marketing, and acquired brands — speak with one voice.",
+  cases: [
+    {
+      label: "GODADDY",
+      brand: "GoDaddy",
+      meta: "Identity transformation · 2018",
+      title: "From cartoon mascot to a heart-shaped GO.",
+      body:
+        "Retired the GoDaddy mascot and authored the new “GO” monogram — two letters forming a heart. The foundation beneath the “utility to iconic” brand shift, codified into a design system unifying 60+ portfolio brands.",
+      href: "https://godaddy.design",
+      before: illoIdentityTransformation,
+      after: illoIdentityTransformation,
+    },
+    {
+      label: "WP ENGINE",
+      brand: "WP Engine",
+      meta: "Design system · 2024",
+      title: "One visual language across 20+ brands.",
+      body:
+        "Re-envisioned creative identity and component system powering the global rebrand — one scalable visual language across product, marketing, and acquired brands including NitroPack and ACF.",
+      media: { type: "video", src: wpEngineLogoExpand },
+    },
+    {
+      label: "DOCUSIGN",
+      brand: "DocuSign",
+      meta: "Brand platform · 2022",
+      title: "Agreement Cloud brand platform",
+      body:
+        "Contributed to the brand & creative platform supporting the “Agreement Cloud” repositioning, with messaging hierarchy and visual guidelines spanning 11 international markets.",
+      href: "https://brand.docusign.com",
+      media: { type: "image", src: illoMaIntegration },
+    },
+    {
+      label: "CES ASIA",
+      brand: "CES Asia",
+      meta: "Launch identity · 2014",
+      title: "Launching CES on a new continent.",
+      body:
+        "Built the CES Asia visual identity, GTM platform, and integrated launch campaign — adapting one of the world's largest tech brands for Mandarin and Japanese markets, exceeding all inaugural KPIs.",
+      media: { type: "image", src: illoCategoryExpansion },
+    },
+  ] as CreativeCase[],
+};
+
+/* ---------------- 04 CAMPAIGN STRATEGY ---------------- */
+
+export const campaignStrategy: Pillar = {
+  num: "04",
+  title: "Campaign Strategy",
+  lede:
+    "The moments brands become household names. Tentpole campaigns that move culture and the P&L in the same breath — Super Bowl broadcasts, industry awards, and integrated programs that deliver both traffic spikes and brand equity.",
+  cases: [
+    {
+      label: "OPEN WE STAND",
+      meta: "GoDaddy · 2020 · Pandemic response",
+      title: "#OpenWeStand — coalition rally-cry for SMBs",
+      body:
+        "Led the creative and cross-brand coalition with Adobe, Cisco, LinkedIn, Mastercard, Microsoft, and Uber to support small businesses during COVID-19. GoDaddy's most effective campaign since rebrand.",
+      media: { type: "image", src: campaignOpenWeStand },
+      href: "https://www.ispot.tv/search/open-we-stand",
+      results: [
+        { value: "4.5B", label: "Impressions" },
+        { value: "+12%", label: "Brand search queries" },
+        { value: "65M+", label: "Anthem views" },
+      ],
+    },
+    {
+      label: "A BETTER WAY",
+      meta: "DocuSign · 2022 · Agreement Cloud",
+      title: "“A Better Way” — anchor brand campaign",
+      body:
+        "Anchor creative for DocuSign's transition to the Agreement Cloud category — one of DocuSign's best-performing LinkedIn campaigns.",
+      media: { type: "image", src: campaignABetterWay },
+      href: "https://www.ispot.tv/ad/b83b/docusign-a-better-way",
+      results: [
+        { value: "3.7M", label: "Views" },
+        { value: "+44%", label: "QoQ web traffic" },
+        { value: "21K", label: "New trial accounts" },
+      ],
+    },
+    {
+      label: "GO YOU",
+      meta: "GoDaddy · 2016 · Brand pivot",
+      title: "“Go You” — with Shaquille O'Neal",
+      body:
+        "Replaced the “It's Go Time” slogan with a more personal, encouraging message centered on the entrepreneur. Supported a year of 15% revenue growth and repositioned GoDaddy from infrastructure vendor to champion of the everyday founder.",
+      media: { type: "image", src: campaignGoYou },
+      href: "https://www.ispot.tv/ad/AfcX/godaddy-go-you-heads-of-cheese",
+      results: [
+        { value: "+15%", label: "Full-year revenue" },
+        { value: "SMB <5", label: "Core target segment" },
+      ],
+    },
+    {
+      label: "PEACE OF MIND",
+      meta: "WP Engine · 2024 · Brand campaign",
+      title: "WordPress Peace of Mind",
+      body:
+        "Integrated brand campaign positioning WP Engine as the source of WordPress peace of mind — pairing customer-led storytelling with a measurable pipeline program that sustained 105% of annual pipeline goal.",
+      media: { type: "image", src: campaignPeaceOfMind },
+      href: "https://www.linkedin.com/posts/wordpresspeaceofmind-ugcPost-7129930297290194944-BLY8",
+      results: [
+        { value: "Digiday", label: "Best Ad nomination" },
+        { value: "105%", label: "Annual pipeline goal" },
+      ],
+    },
+  ],
+};
+
+/* ---------------- 05 GLOBAL ---------------- */
 
 export const internationalWork = [
   {
     co: "DocuSign",
-    flags: ["🇺🇸", "🇬🇧", "🇩🇪", "🇫🇷", "🇯🇵", "🇧🇷", "🇲🇽", "🇦🇺", "🇨🇦", "🇮🇳", "🇸🇬"],
     regions: "11 markets · global",
     detail:
       "Built a developer market maturity model & tiering system leveraging SAM/TAM, product roadmaps, and efficiency metrics to inform entry strategy across 11 international markets.",
@@ -384,24 +345,21 @@ export const internationalWork = [
   },
   {
     co: "GoDaddy",
-    flags: ["🇯🇵", "🇮🇳", "🇸🇬", "🇧🇷", "🇲🇽", "🇮🇩"],
     regions: "APAC · LATAM · SEA",
     detail:
       "Led international markets strategy and entry campaigns across APAC, South America, and Southeast Asia — localized brand platform and GTM across culturally distinct segments.",
-    impact: "3 regions",
+    impact: "~8% of revenue",
   },
   {
     co: "CES / CEA",
-    flags: ["🇨🇳", "🇰🇷", "🇯🇵"],
-    regions: "Asia · inaugural",
+    regions: "Asia · inaugural launch",
     detail:
       "Launched CES Asia for the first time, exceeding all inaugural KPIs. Grew international CES attendance 10%+ annually for three consecutive years.",
     impact: "CES Asia launch",
   },
   {
     co: "National Geographic",
-    flags: ["🇨🇳", "🇲🇳", "🇰🇿"],
-    regions: "Asia program",
+    regions: "Asia program · grants",
     detail:
       "Advised on the launch of the Global Exploration Fund — Asia program, developing grants-making procedure and operations for National Geographic's first Asia-dedicated fund.",
     impact: "First Asia fund",
@@ -409,61 +367,62 @@ export const internationalWork = [
 ];
 
 export const languages = [
+  { name: "English", level: "Native" },
   { name: "Mandarin", level: "Native" },
-  { name: "Japanese", level: "JLPT N1" },
+  { name: "Japanese", level: "Working proficiency · JLPT N1" },
   { name: "Spanish", level: "Conversational · B1" },
-  { name: "English", level: "Professional" },
 ];
+
+/* ---------------- 06 EXPERIENCE ---------------- */
 
 export const experience = [
   {
     date: "2023 — Present",
     role: "Head of Corporate Marketing & Global Brand Strategy",
-    co: "WP Engine · Remote",
+    co: "WP ENGINE",
     desc:
-      "Lead brand, creative, content, and social across a $1B WordPress platform. Architected the global rebrand, run integrated GTM across mid-market, agency, and pro-sumer, and own portfolio strategy for 20+ brands including NitroPack and ACF.",
+      "Lead brand, creative, and social across the #1 platform for WordPress. I used to be a thinker. Now I present to rooms of hundreds — and I've learned to deeply respect anyone who can hold a crowd.",
   },
   {
     date: "2022 — 2023",
     role: "Director, Brand & Content Strategy",
-    co: "DocuSign · San Francisco",
+    co: "DOCUSIGN",
     desc:
-      "Led brand strategy for the transition from e-signature to Agreement Cloud / CLM platform. Built the 11-market expansion framework contributing 18% of total revenue, and stood up the testing culture that drove 10× velocity.",
+      "Figured out how to make DocuSign matter to the person holding the pen — not just the person signing it. Spent a lot of time thinking about SERP, thought leadership, and how to shift brand value from the user who doesn't pay to the business that does.",
   },
   {
     date: "2015 — 2021",
     role: "Director, Global Brand Strategy & Product Marketing",
-    co: "GoDaddy · Sunnyvale",
+    co: "GODADDY",
     desc:
-      "Oversaw brand portfolio, product marketing, and GTM for a $4B subscription platform serving 20M+ customers. Architected the M&A framework for 60+ brands, led Super Bowl campaigns, and ran brand measurement on a $25M budget.",
+      "We took the head out of the logo and put a heart in. We pulled GoDaddy from the Super Bowl, then brought it back. And we gave Danica Patrick a send-off worthy of everything she'd built.",
   },
   {
     date: "2013 — 2015",
     role: "International Marketing Specialist",
-    co: "Consumer Electronics Association · Arlington, VA",
+    co: "CONSUMER ELECTRONICS ASSOCIATION",
     desc:
-      "Led GTM and integrated campaigns for the inaugural CES Asia launch. Grew international CES attendance 10%+ annually for three consecutive years across EMEA and APAC.",
+      "Brought everyone to Vegas for the biggest tech show on earth. Then brought Vegas to Shanghai and did it all over again.",
   },
   {
     date: "2011 — 2012",
     role: "Research Assistant, Global Exploration Fund",
-    co: "National Geographic Society · Washington D.C.",
+    co: "NATIONAL GEOGRAPHIC SOCIETY",
     desc:
-      "Developed National Geographic's first Global Exploration Fund — Asia program, advising on grants-making procedure and operations.",
+      "Funded people doing extraordinary things in the wild — sustainable hunting, the recovery of ancient human remains, the conservation of air and water in places most people will never see.",
   },
   {
     date: "2009 — 2010",
     role: "Operations Lead, CSR",
-    co: "Google (China) · Shanghai",
+    co: "GOOGLE (CHINA)",
     desc:
-      "Tripled participation in Google (China) Social Innovation Grant Program through marketing initiatives and vendor negotiations.",
+      "Built a CSR program that reached two-thirds of colleges across China. It got so big the government shut it down. We considered that a win.",
   },
   {
     date: "2007 — 2009",
     role: "Broadcast Journalist",
-    co: "Shanghai Media Group · Shanghai",
-    desc:
-      "On-camera reporter and production assistant for International Channel Shanghai — the first bilingual TV channel in the region.",
+    co: "SHANGHAI MEDIA GROUP",
+    desc: "Talked to everyone. Made the clip.",
   },
 ];
 
