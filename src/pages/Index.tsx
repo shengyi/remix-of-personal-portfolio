@@ -12,6 +12,8 @@ import {
   FlaskConical,
   Search,
   TrendingUp,
+  Compass,
+  Heart,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
@@ -292,7 +294,7 @@ function BrandStrategySection() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 mt-6 text-sm text-mustard hover:text-ink transition-colors w-fit"
                         >
-                          Read the case <ArrowUpRight className="size-3.5" />
+                          {c.ctaLabel ?? "Read the case"} <ArrowUpRight className="size-3.5" />
                         </a>
                       )}
                     </div>
@@ -317,6 +319,8 @@ const intelIcons: Record<IntelCard["icon"], React.ComponentType<{ className?: st
   flask: FlaskConical,
   search: Search,
   trending: TrendingUp,
+  compass: Compass,
+  heart: Heart,
 };
 
 function BrandIntelligenceSection() {
@@ -334,43 +338,45 @@ function BrandIntelligenceSection() {
           lede={brandIntelligence.lede}
         />
 
-        {/* Escalating cards — each one slightly taller than the previous */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-5 items-end">
+        {/* 7-card responsive bento grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 auto-rows-fr">
           {cards.map((c, i) => {
             const Icon = intelIcons[c.icon];
-            const heights = [
-              "min-h-[260px] md:min-h-[280px]",
-              "min-h-[280px] md:min-h-[320px]",
-              "min-h-[300px] md:min-h-[360px]",
-              "min-h-[320px] md:min-h-[400px]",
-              "min-h-[340px] md:min-h-[440px]",
+            const spans = [
+              "md:col-span-2 md:row-span-2",
+              "md:col-span-1",
+              "md:col-span-1",
+              "md:col-span-2",
+              "md:col-span-1",
+              "md:col-span-1",
+              "md:col-span-2",
             ];
             return (
               <motion.article
                 key={c.title}
                 {...fadeUp}
-                transition={{ ...fadeUp.transition, delay: i * 0.06 }}
+                transition={{ ...fadeUp.transition, delay: i * 0.05 }}
                 tabIndex={0}
-                className={`group relative ${heights[i]} bg-background border border-rule rounded-sm p-5 md:p-6 flex flex-col cursor-default transition-all duration-300 hover:-translate-y-1 hover:bg-paper hover:border-mustard hover:shadow-[0_20px_40px_-20px_hsl(var(--ink)/0.15)] focus:outline-none focus:border-mustard`}
+                className={`group relative ${spans[i] ?? ""} min-h-[220px] md:min-h-[260px] bg-background border border-rule rounded-sm p-5 md:p-7 flex flex-col cursor-default transition-all duration-300 hover:-translate-y-1 hover:bg-paper hover:border-mustard hover:shadow-[0_20px_40px_-20px_hsl(var(--ink)/0.15)] focus:outline-none focus:border-mustard`}
               >
-                <div className="mb-auto">
+                <div className="flex items-start justify-between mb-auto">
                   <Icon className="size-5 text-mustard" />
+                  {c.metric && (
+                    <span className="font-mono text-[10px] text-mustard tracking-wider">
+                      {c.metric}
+                    </span>
+                  )}
                 </div>
-                <div>
+                <div className="mt-6">
                   <div className="font-mono text-[10px] tracking-[0.18em] text-olive-soft mb-2">
                     {c.label}
                   </div>
-                  <h4 className="font-display text-lg md:text-xl text-ink leading-tight mb-2 group-hover:text-mustard transition-colors">
+                  <h4 className="font-display text-xl md:text-2xl text-ink leading-tight mb-2 group-hover:text-mustard transition-colors">
                     {c.title}
                   </h4>
                   <p className="text-[13px] text-muted-foreground leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">
                     {c.body}
                   </p>
-                  {c.metric && (
-                    <div className="mt-3 pt-3 border-t border-rule/60 font-mono text-[11px] text-mustard tracking-wider">
-                      {c.metric}
-                    </div>
-                  )}
                 </div>
               </motion.article>
             );
@@ -420,7 +426,7 @@ function CompareSlider({ before, after, alt }: { before: string; after: string; 
   return (
     <div
       ref={ref}
-      className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden bg-cream-deep select-none touch-none"
+      className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden bg-white select-none touch-none"
       onMouseDown={(e) => {
         dragging.current = true;
         updateFromClientX(e.clientX);
@@ -434,7 +440,7 @@ function CompareSlider({ before, after, alt }: { before: string; after: string; 
       <img
         src={after}
         alt={`${alt} — after`}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-contain p-8 md:p-12"
         draggable={false}
       />
       {/* Before (clipped) */}
@@ -445,7 +451,7 @@ function CompareSlider({ before, after, alt }: { before: string; after: string; 
         <img
           src={before}
           alt={`${alt} — before`}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain p-8 md:p-12"
           draggable={false}
         />
       </div>
@@ -584,7 +590,7 @@ function CreativeStrategySection() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-sm text-mustard hover:text-ink transition-colors"
                   >
-                    Visit live system <ArrowUpRight className="size-3.5" />
+                    {current.hrefLabel ?? "Visit live system"} <ArrowUpRight className="size-3.5" />
                   </a>
                 )}
               </div>
@@ -597,13 +603,21 @@ function CreativeStrategySection() {
 }
 
 /* ====================================================================
- * 04 CAMPAIGN STRATEGY — Left tabs (Impeccable "The Case" style)
+ * 04 CAMPAIGN STRATEGY — Top tabs, large media on right, hover-zoom
  * ==================================================================== */
 
 function CampaignStrategySection() {
   const [active, setActive] = useState(0);
   const cases = campaignStrategy.cases;
   const current = cases[active];
+  const isYouTube = current.media?.type === "youtube";
+  const watchOn = current.href?.includes("ispot")
+    ? "iSpot.tv"
+    : current.href?.includes("linkedin")
+      ? "LinkedIn"
+      : current.href?.includes("youtube")
+        ? "YouTube"
+        : "video";
 
   return (
     <section id="campaigns" className="bg-paper/40 border-y border-rule/60">
@@ -619,121 +633,120 @@ function CampaignStrategySection() {
           fullWidth
         />
 
-        <div className="bg-background border border-rule rounded-sm overflow-hidden">
-          <div className="grid lg:grid-cols-[320px_1fr]">
-            {/* Left tabs */}
-            <aside className="border-b lg:border-b-0 lg:border-r border-rule">
-              <ul className="flex lg:flex-col overflow-x-auto lg:overflow-visible hide-scrollbar">
-                {cases.map((c, i) => {
-                  const isActive = i === active;
-                  return (
-                    <li
-                      key={c.label}
-                      className="lg:border-b border-rule/60 shrink-0 lg:w-full"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setActive(i)}
-                        className={`relative w-full text-left px-6 py-5 transition-colors ${
-                          isActive
-                            ? "bg-background text-ink"
-                            : "bg-paper/40 text-muted-foreground hover:text-ink hover:bg-paper/70"
-                        }`}
-                      >
-                        {isActive && (
-                          <span className="absolute left-0 top-2 bottom-2 w-0.5 bg-mustard" />
-                        )}
-                        <div className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
-                          <span className="font-mono text-xs text-mustard">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <span className="font-display text-base lg:text-lg leading-tight">
-                            {c.label}
-                          </span>
-                        </div>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </aside>
-
-            {/* Right body */}
-            <div className="p-6 md:p-10">
-              <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
-                <a
-                  href={current.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Watch ${current.title}`}
-                  className="group block"
+        {/* Top horizontal tab strip */}
+        <div className="border-b border-rule mb-10">
+          <div className="flex overflow-x-auto hide-scrollbar gap-1">
+            {cases.map((c, i) => {
+              const isActive = i === active;
+              return (
+                <button
+                  key={c.label}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  className={`relative shrink-0 px-5 py-4 text-left transition-colors ${
+                    isActive ? "text-ink" : "text-muted-foreground hover:text-ink"
+                  }`}
                 >
-                  <div className="rounded-sm overflow-hidden border border-rule bg-black shadow-[0_20px_60px_-20px_hsl(var(--ink)/0.25)]">
-                    <div className="relative aspect-video overflow-hidden">
-                      <img
-                        src={current.media?.src}
-                        alt={current.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
-                      <div className="absolute inset-0 grid place-items-center">
-                        <span className="size-16 rounded-full bg-paper/95 text-ink grid place-items-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Play className="size-7 translate-x-0.5 fill-current" />
-                        </span>
-                      </div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[10px] text-mustard tracking-wider">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-display text-base md:text-lg leading-none whitespace-nowrap">
+                      {c.label}
+                    </span>
+                  </div>
+                  {isActive && (
+                    <span className="absolute left-0 right-0 -bottom-px h-0.5 bg-mustard" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Body — narrow copy on left, large media on right */}
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="grid lg:grid-cols-[minmax(0,360px)_1fr] gap-10 md:gap-14 items-start"
+        >
+          {/* Copy column (narrower) */}
+          <div className="flex flex-col">
+            <div className="label-mono mb-3">{current.meta}</div>
+            <h3 className="font-display text-3xl md:text-4xl text-ink leading-tight mb-5">
+              {current.title}
+            </h3>
+            <p className="text-[15px] text-muted-foreground leading-relaxed mb-7">
+              {current.body}
+            </p>
+
+            {current.results && (
+              <div className="grid grid-cols-3 gap-4 pt-5 border-t border-rule/60">
+                {current.results.slice(0, 3).map((r) => (
+                  <div key={r.label}>
+                    <div className="font-display text-2xl md:text-3xl text-ink leading-tight">
+                      {r.value}
+                    </div>
+                    <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                      {r.label}
                     </div>
                   </div>
-                  <div className="mt-3 font-mono text-[11px] text-olive-soft tracking-wider">
-                    Watch on{" "}
-                    {current.href?.includes("ispot")
-                      ? "iSpot.tv"
-                      : current.href?.includes("linkedin")
-                        ? "LinkedIn"
-                        : "video"}{" "}
-                    ↗
-                  </div>
-                </a>
+                ))}
+              </div>
+            )}
 
-                <div className="flex flex-col">
-                  <div className="label-mono mb-3">{current.meta}</div>
-                  <h3 className="font-display text-2xl md:text-3xl text-ink leading-tight mb-4">
-                    {current.title}
-                  </h3>
-                  <p className="text-[15px] text-muted-foreground leading-relaxed mb-6">
-                    {current.body}
-                  </p>
+            {current.href && (
+              <a
+                href={current.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-7 text-sm text-mustard hover:text-ink transition-colors w-fit"
+              >
+                Watch on {watchOn} <ArrowUpRight className="size-3.5" />
+              </a>
+            )}
+          </div>
 
-                  {current.results && (
-                    <div className="grid grid-cols-3 gap-4 pt-5 border-t border-rule/60">
-                      {current.results.slice(0, 3).map((r) => (
-                        <div key={r.label}>
-                          <div className="font-display text-2xl md:text-3xl text-ink leading-tight">
-                            {r.value}
-                          </div>
-                          <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
-                            {r.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {current.href && (
-                    <a
-                      href={current.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 mt-6 text-sm text-mustard hover:text-ink transition-colors w-fit"
-                    >
-                      Watch full spot <ArrowUpRight className="size-3.5" />
-                    </a>
-                  )}
+          {/* Media column — large, hover zoom */}
+          <a
+            href={current.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Watch ${current.title}`}
+            className="group block w-full"
+          >
+            <div className="relative rounded-sm overflow-hidden border border-rule bg-black shadow-[0_30px_80px_-30px_hsl(var(--ink)/0.4)]">
+              <div className="relative aspect-video overflow-hidden">
+                {isYouTube ? (
+                  <img
+                    src={current.media!.poster}
+                    alt={current.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                ) : (
+                  <img
+                    src={current.media?.src}
+                    alt={current.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0 group-hover:from-black/60 transition-colors" />
+                <div className="absolute inset-0 grid place-items-center">
+                  <span className="size-20 md:size-24 rounded-full bg-paper/95 text-ink grid place-items-center shadow-2xl group-hover:scale-110 transition-transform">
+                    <Play className="size-8 md:size-10 translate-x-0.5 fill-current" />
+                  </span>
+                </div>
+                <div className="absolute bottom-4 left-5 font-mono text-[11px] text-paper/80 tracking-wider">
+                  {watchOn} ↗
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -802,10 +815,15 @@ function GlobalSection() {
                 key={l.name}
                 className="border-l-2 border-mustard/50 pl-3 py-1"
               >
-                <div className="font-display text-lg text-ink leading-tight">
-                  {l.name}
+                <div className="flex items-center gap-2">
+                  <span className="text-xl leading-none" aria-hidden>
+                    {l.flag}
+                  </span>
+                  <div className="font-display text-lg text-ink leading-tight">
+                    {l.name}
+                  </div>
                 </div>
-                <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                <div className="text-[11px] text-muted-foreground mt-1.5 leading-snug">
                   {l.level}
                 </div>
               </div>
@@ -835,27 +853,42 @@ function ExperienceSection() {
           lede="Each role taught me a different way to look at brand, market, and craft. Together, they make the operating system."
         />
 
-        <div className="border-t border-rule">
-          {experience.map((x) => (
-            <motion.div
-              key={x.role + x.date}
-              {...fadeUp}
-              className="grid md:grid-cols-[160px_1.2fr_2fr] gap-6 md:gap-10 py-7 md:py-8 border-b border-rule items-start"
-            >
-              <div className="font-mono text-sm text-mustard pt-1">{x.date}</div>
-              <div>
-                <div className="font-display text-xl text-ink leading-tight mb-1.5">
-                  {x.role}
+        {/* Vertical timeline */}
+        <div className="relative">
+          {/* Vertical rail */}
+          <div className="absolute left-[7px] md:left-[calc(160px+7px)] top-2 bottom-2 w-px bg-rule" aria-hidden />
+
+          <ol className="space-y-10 md:space-y-12">
+            {experience.map((x, i) => (
+              <motion.li
+                key={x.role + x.date}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.04 }}
+                className="relative grid md:grid-cols-[160px_1fr] gap-4 md:gap-12 items-start"
+              >
+                {/* Date column */}
+                <div className="font-mono text-sm text-mustard md:text-right md:pr-2 pt-0.5">
+                  {x.date}
                 </div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-olive-soft">
-                  {x.co}
+                {/* Dot + content */}
+                <div className="relative pl-8">
+                  <span
+                    className="absolute left-0 top-1.5 size-[14px] rounded-full bg-background border-2 border-mustard ring-4 ring-paper/40"
+                    aria-hidden
+                  />
+                  <div className="font-display text-xl md:text-2xl text-ink leading-tight mb-1.5">
+                    {x.role}
+                  </div>
+                  <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-olive-soft mb-3">
+                    {x.co}
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-sm md:text-[15px] max-w-2xl">
+                    {x.desc}
+                  </p>
                 </div>
-              </div>
-              <p className="text-muted-foreground leading-relaxed text-sm md:text-[15px]">
-                {x.desc}
-              </p>
-            </motion.div>
-          ))}
+              </motion.li>
+            ))}
+          </ol>
         </div>
 
         <div className="mt-16">
@@ -1016,10 +1049,7 @@ function Contact() {
           </p>
         </div>
         <div className="self-end w-full">
-          <ContactLink onClick={() => setOpen(true)}>{profile.email}</ContactLink>
-          <ContactLink href={`tel:${profile.phone.replace(/\s/g, "")}`}>
-            {profile.phone}
-          </ContactLink>
+          <ContactLink onClick={() => setOpen(true)}>Drop me a line</ContactLink>
           <ContactLink href={profile.linkedin} external>
             LinkedIn · Regina Yuan
           </ContactLink>

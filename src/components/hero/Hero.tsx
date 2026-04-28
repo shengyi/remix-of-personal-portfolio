@@ -59,19 +59,17 @@ function CTAs({ onContact }: { onContact: () => void }) {
 export function Hero({ onContact }: { onContact: () => void }) {
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* Geometric grid background */}
       <div
         aria-hidden
         className="absolute inset-0 grid-bg grid-bg-fade pointer-events-none"
       />
-      {/* Soft accent blob */}
       <div
         aria-hidden
         className="absolute -top-32 -right-24 size-[520px] rounded-full bg-mustard/5 blur-3xl pointer-events-none"
       />
 
       <div className="container-page relative pt-20 pb-24 md:pt-32 md:pb-36">
-        <motion.div {...fadeUp} className="max-w-4xl">
+        <motion.div {...fadeUp} className="max-w-5xl">
           <div className="label-mono mb-8 flex items-center gap-3">
             <span className="size-1.5 rounded-full bg-mustard" />
             {profile.eyebrow}
@@ -81,40 +79,22 @@ export function Hero({ onContact }: { onContact: () => void }) {
             Hello, I'm <em>Regina&nbsp;Yuan</em>.
           </h1>
 
-          <div className="grid md:grid-cols-[1.4fr_1fr] gap-10 md:gap-16 items-end">
-            <div className="space-y-5 max-w-2xl">
-              <p className="font-display text-2xl md:text-[28px] text-ink leading-snug">
-                {profile.intro[0]}
-              </p>
-              <p className="font-display text-xl md:text-[22px] text-ink/80 leading-snug italic">
-                {profile.intro[1]}
-              </p>
-              <p className="text-base md:text-[17px] text-muted-foreground leading-relaxed pt-2">
-                {profile.intro[2]}
-              </p>
-              <p className="text-base md:text-[17px] text-muted-foreground leading-relaxed">
-                {profile.intro[3]}
-              </p>
-            </div>
-
-            <motion.div
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: 0.15 }}
-              className="md:pb-2"
-            >
-              <CTAs onContact={onContact} />
-              <div className="mt-6 pt-5 border-t border-rule/60 text-xs text-muted-foreground space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="label-mono">Based</span>
-                  <span className="text-ink">{profile.location}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="label-mono">Open to</span>
-                  <span className="text-ink">Advisory · Fractional · FT</span>
-                </div>
-              </div>
-            </motion.div>
+          <div className="space-y-6 max-w-3xl mb-12">
+            {/* Smaller now */}
+            <p className="font-sans text-base md:text-lg text-muted-foreground leading-relaxed">
+              {profile.intro[0]}
+            </p>
+            {/* Larger, hero-style headline statement */}
+            <p className="font-display text-3xl md:text-[44px] text-ink leading-[1.1]">
+              I think in <em>systems</em>, write in <em>stories</em>, and measure in <em>outcomes</em>.
+            </p>
+            {/* Shortened description */}
+            <p className="text-base md:text-[17px] text-muted-foreground leading-relaxed max-w-2xl">
+              {profile.intro[2]}
+            </p>
           </div>
+
+          <CTAs onContact={onContact} />
         </motion.div>
       </div>
     </section>
