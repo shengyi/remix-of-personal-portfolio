@@ -1049,10 +1049,7 @@ function Contact() {
           </p>
         </div>
         <div className="self-end w-full">
-          <ContactLink onClick={() => setOpen(true)}>{profile.email}</ContactLink>
-          <ContactLink href={`tel:${profile.phone.replace(/\s/g, "")}`}>
-            {profile.phone}
-          </ContactLink>
+          <ContactLink onClick={() => setOpen(true)}>Drop me a line</ContactLink>
           <ContactLink href={profile.linkedin} external>
             LinkedIn · Regina Yuan
           </ContactLink>
