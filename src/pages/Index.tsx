@@ -12,6 +12,8 @@ import {
   FlaskConical,
   Search,
   TrendingUp,
+  Compass,
+  Heart,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
@@ -317,6 +319,8 @@ const intelIcons: Record<IntelCard["icon"], React.ComponentType<{ className?: st
   flask: FlaskConical,
   search: Search,
   trending: TrendingUp,
+  compass: Compass,
+  heart: Heart,
 };
 
 function BrandIntelligenceSection() {
