@@ -603,13 +603,21 @@ function CreativeStrategySection() {
 }
 
 /* ====================================================================
- * 04 CAMPAIGN STRATEGY — Left tabs (Impeccable "The Case" style)
+ * 04 CAMPAIGN STRATEGY — Top tabs, large media on right, hover-zoom
  * ==================================================================== */
 
 function CampaignStrategySection() {
   const [active, setActive] = useState(0);
   const cases = campaignStrategy.cases;
   const current = cases[active];
+  const isYouTube = current.media?.type === "youtube";
+  const watchOn = current.href?.includes("ispot")
+    ? "iSpot.tv"
+    : current.href?.includes("linkedin")
+      ? "LinkedIn"
+      : current.href?.includes("youtube")
+        ? "YouTube"
+        : "video";
 
   return (
     <section id="campaigns" className="bg-paper/40 border-y border-rule/60">
@@ -625,121 +633,120 @@ function CampaignStrategySection() {
           fullWidth
         />
 
-        <div className="bg-background border border-rule rounded-sm overflow-hidden">
-          <div className="grid lg:grid-cols-[320px_1fr]">
-            {/* Left tabs */}
-            <aside className="border-b lg:border-b-0 lg:border-r border-rule">
-              <ul className="flex lg:flex-col overflow-x-auto lg:overflow-visible hide-scrollbar">
-                {cases.map((c, i) => {
-                  const isActive = i === active;
-                  return (
-                    <li
-                      key={c.label}
-                      className="lg:border-b border-rule/60 shrink-0 lg:w-full"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setActive(i)}
-                        className={`relative w-full text-left px-6 py-5 transition-colors ${
-                          isActive
-                            ? "bg-background text-ink"
-                            : "bg-paper/40 text-muted-foreground hover:text-ink hover:bg-paper/70"
-                        }`}
-                      >
-                        {isActive && (
-                          <span className="absolute left-0 top-2 bottom-2 w-0.5 bg-mustard" />
-                        )}
-                        <div className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
-                          <span className="font-mono text-xs text-mustard">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <span className="font-display text-base lg:text-lg leading-tight">
-                            {c.label}
-                          </span>
-                        </div>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </aside>
-
-            {/* Right body */}
-            <div className="p-6 md:p-10">
-              <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
-                <a
-                  href={current.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Watch ${current.title}`}
-                  className="group block"
+        {/* Top horizontal tab strip */}
+        <div className="border-b border-rule mb-10">
+          <div className="flex overflow-x-auto hide-scrollbar gap-1">
+            {cases.map((c, i) => {
+              const isActive = i === active;
+              return (
+                <button
+                  key={c.label}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  className={`relative shrink-0 px-5 py-4 text-left transition-colors ${
+                    isActive ? "text-ink" : "text-muted-foreground hover:text-ink"
+                  }`}
                 >
-                  <div className="rounded-sm overflow-hidden border border-rule bg-black shadow-[0_20px_60px_-20px_hsl(var(--ink)/0.25)]">
-                    <div className="relative aspect-video overflow-hidden">
-                      <img
-                        src={current.media?.src}
-                        alt={current.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
-                      <div className="absolute inset-0 grid place-items-center">
-                        <span className="size-16 rounded-full bg-paper/95 text-ink grid place-items-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Play className="size-7 translate-x-0.5 fill-current" />
-                        </span>
-                      </div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[10px] text-mustard tracking-wider">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-display text-base md:text-lg leading-none whitespace-nowrap">
+                      {c.label}
+                    </span>
+                  </div>
+                  {isActive && (
+                    <span className="absolute left-0 right-0 -bottom-px h-0.5 bg-mustard" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Body — narrow copy on left, large media on right */}
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="grid lg:grid-cols-[minmax(0,360px)_1fr] gap-10 md:gap-14 items-start"
+        >
+          {/* Copy column (narrower) */}
+          <div className="flex flex-col">
+            <div className="label-mono mb-3">{current.meta}</div>
+            <h3 className="font-display text-3xl md:text-4xl text-ink leading-tight mb-5">
+              {current.title}
+            </h3>
+            <p className="text-[15px] text-muted-foreground leading-relaxed mb-7">
+              {current.body}
+            </p>
+
+            {current.results && (
+              <div className="grid grid-cols-3 gap-4 pt-5 border-t border-rule/60">
+                {current.results.slice(0, 3).map((r) => (
+                  <div key={r.label}>
+                    <div className="font-display text-2xl md:text-3xl text-ink leading-tight">
+                      {r.value}
+                    </div>
+                    <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                      {r.label}
                     </div>
                   </div>
-                  <div className="mt-3 font-mono text-[11px] text-olive-soft tracking-wider">
-                    Watch on{" "}
-                    {current.href?.includes("ispot")
-                      ? "iSpot.tv"
-                      : current.href?.includes("linkedin")
-                        ? "LinkedIn"
-                        : "video"}{" "}
-                    ↗
-                  </div>
-                </a>
+                ))}
+              </div>
+            )}
 
-                <div className="flex flex-col">
-                  <div className="label-mono mb-3">{current.meta}</div>
-                  <h3 className="font-display text-2xl md:text-3xl text-ink leading-tight mb-4">
-                    {current.title}
-                  </h3>
-                  <p className="text-[15px] text-muted-foreground leading-relaxed mb-6">
-                    {current.body}
-                  </p>
+            {current.href && (
+              <a
+                href={current.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-7 text-sm text-mustard hover:text-ink transition-colors w-fit"
+              >
+                Watch on {watchOn} <ArrowUpRight className="size-3.5" />
+              </a>
+            )}
+          </div>
 
-                  {current.results && (
-                    <div className="grid grid-cols-3 gap-4 pt-5 border-t border-rule/60">
-                      {current.results.slice(0, 3).map((r) => (
-                        <div key={r.label}>
-                          <div className="font-display text-2xl md:text-3xl text-ink leading-tight">
-                            {r.value}
-                          </div>
-                          <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
-                            {r.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {current.href && (
-                    <a
-                      href={current.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 mt-6 text-sm text-mustard hover:text-ink transition-colors w-fit"
-                    >
-                      Watch full spot <ArrowUpRight className="size-3.5" />
-                    </a>
-                  )}
+          {/* Media column — large, hover zoom */}
+          <a
+            href={current.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Watch ${current.title}`}
+            className="group block w-full"
+          >
+            <div className="relative rounded-sm overflow-hidden border border-rule bg-black shadow-[0_30px_80px_-30px_hsl(var(--ink)/0.4)]">
+              <div className="relative aspect-video overflow-hidden">
+                {isYouTube ? (
+                  <img
+                    src={current.media!.poster}
+                    alt={current.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                ) : (
+                  <img
+                    src={current.media?.src}
+                    alt={current.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0 group-hover:from-black/60 transition-colors" />
+                <div className="absolute inset-0 grid place-items-center">
+                  <span className="size-20 md:size-24 rounded-full bg-paper/95 text-ink grid place-items-center shadow-2xl group-hover:scale-110 transition-transform">
+                    <Play className="size-8 md:size-10 translate-x-0.5 fill-current" />
+                  </span>
+                </div>
+                <div className="absolute bottom-4 left-5 font-mono text-[11px] text-paper/80 tracking-wider">
+                  {watchOn} ↗
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
