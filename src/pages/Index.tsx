@@ -815,10 +815,15 @@ function GlobalSection() {
                 key={l.name}
                 className="border-l-2 border-mustard/50 pl-3 py-1"
               >
-                <div className="font-display text-lg text-ink leading-tight">
-                  {l.name}
+                <div className="flex items-center gap-2">
+                  <span className="text-xl leading-none" aria-hidden>
+                    {l.flag}
+                  </span>
+                  <div className="font-display text-lg text-ink leading-tight">
+                    {l.name}
+                  </div>
                 </div>
-                <div className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                <div className="text-[11px] text-muted-foreground mt-1.5 leading-snug">
                   {l.level}
                 </div>
               </div>
@@ -848,27 +853,42 @@ function ExperienceSection() {
           lede="Each role taught me a different way to look at brand, market, and craft. Together, they make the operating system."
         />
 
-        <div className="border-t border-rule">
-          {experience.map((x) => (
-            <motion.div
-              key={x.role + x.date}
-              {...fadeUp}
-              className="grid md:grid-cols-[160px_1.2fr_2fr] gap-6 md:gap-10 py-7 md:py-8 border-b border-rule items-start"
-            >
-              <div className="font-mono text-sm text-mustard pt-1">{x.date}</div>
-              <div>
-                <div className="font-display text-xl text-ink leading-tight mb-1.5">
-                  {x.role}
+        {/* Vertical timeline */}
+        <div className="relative">
+          {/* Vertical rail */}
+          <div className="absolute left-[7px] md:left-[calc(160px+7px)] top-2 bottom-2 w-px bg-rule" aria-hidden />
+
+          <ol className="space-y-10 md:space-y-12">
+            {experience.map((x, i) => (
+              <motion.li
+                key={x.role + x.date}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.04 }}
+                className="relative grid md:grid-cols-[160px_1fr] gap-4 md:gap-12 items-start"
+              >
+                {/* Date column */}
+                <div className="font-mono text-sm text-mustard md:text-right md:pr-2 pt-0.5">
+                  {x.date}
                 </div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-olive-soft">
-                  {x.co}
+                {/* Dot + content */}
+                <div className="relative pl-8">
+                  <span
+                    className="absolute left-0 top-1.5 size-[14px] rounded-full bg-background border-2 border-mustard ring-4 ring-paper/40"
+                    aria-hidden
+                  />
+                  <div className="font-display text-xl md:text-2xl text-ink leading-tight mb-1.5">
+                    {x.role}
+                  </div>
+                  <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-olive-soft mb-3">
+                    {x.co}
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-sm md:text-[15px] max-w-2xl">
+                    {x.desc}
+                  </p>
                 </div>
-              </div>
-              <p className="text-muted-foreground leading-relaxed text-sm md:text-[15px]">
-                {x.desc}
-              </p>
-            </motion.div>
-          ))}
+              </motion.li>
+            ))}
+          </ol>
         </div>
 
         <div className="mt-16">
