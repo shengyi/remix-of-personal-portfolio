@@ -590,7 +590,7 @@ function CreativeStrategySection() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-sm text-mustard hover:text-ink transition-colors"
                   >
-                    Visit live system <ArrowUpRight className="size-3.5" />
+                    {current.hrefLabel ?? "Visit live system"} <ArrowUpRight className="size-3.5" />
                   </a>
                 )}
               </div>
