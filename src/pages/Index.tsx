@@ -426,7 +426,7 @@ function CompareSlider({ before, after, alt }: { before: string; after: string; 
   return (
     <div
       ref={ref}
-      className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden bg-cream-deep select-none touch-none"
+      className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden bg-white select-none touch-none"
       onMouseDown={(e) => {
         dragging.current = true;
         updateFromClientX(e.clientX);
@@ -440,7 +440,7 @@ function CompareSlider({ before, after, alt }: { before: string; after: string; 
       <img
         src={after}
         alt={`${alt} — after`}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-contain p-8 md:p-12"
         draggable={false}
       />
       {/* Before (clipped) */}
@@ -451,7 +451,7 @@ function CompareSlider({ before, after, alt }: { before: string; after: string; 
         <img
           src={before}
           alt={`${alt} — before`}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain p-8 md:p-12"
           draggable={false}
         />
       </div>
