@@ -294,7 +294,7 @@ function BrandStrategySection() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 mt-6 text-sm text-mustard hover:text-ink transition-colors w-fit"
                         >
-                          Read the case <ArrowUpRight className="size-3.5" />
+                          {c.ctaLabel ?? "Read the case"} <ArrowUpRight className="size-3.5" />
                         </a>
                       )}
                     </div>
