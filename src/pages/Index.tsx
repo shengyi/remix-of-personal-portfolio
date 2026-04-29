@@ -118,7 +118,14 @@ function LogoStrip() {
                 src={l.src}
                 alt={l.name}
                 loading="lazy"
-                className={`${sizing[l.name] ?? "h-8"} w-auto object-contain transition-opacity opacity-80 hover:opacity-100`}
+                className={`${sizing[l.name] ?? "h-8"} w-auto object-contain transition-opacity opacity-80 hover:opacity-100 dark:hidden`}
+              />
+              <img
+                src={l.srcDark ?? l.src}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className={`${sizing[l.name] ?? "h-8"} w-auto object-contain transition-opacity opacity-90 hover:opacity-100 hidden dark:block`}
               />
             </div>
           ))}
