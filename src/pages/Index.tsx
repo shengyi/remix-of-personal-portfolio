@@ -345,18 +345,19 @@ function BrandIntelligenceSection() {
           lede={brandIntelligence.lede}
         />
 
-        {/* 7-card responsive bento grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 auto-rows-fr">
+        {/* Escalating elevation: cards grow taller from left to right, like a rising bar chart */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-5 items-end">
           {cards.map((c, i) => {
             const Icon = intelIcons[c.icon];
-            const spans = [
-              "md:col-span-2 md:row-span-2",
-              "md:col-span-1",
-              "md:col-span-1",
-              "md:col-span-2",
-              "md:col-span-1",
-              "md:col-span-1",
-              "md:col-span-2",
+            // Heights step up by index — short on the left, tall on the right
+            const heights = [
+              "min-h-[200px]",
+              "min-h-[230px]",
+              "min-h-[260px]",
+              "min-h-[290px]",
+              "min-h-[320px]",
+              "min-h-[350px]",
+              "min-h-[380px]",
             ];
             return (
               <motion.article
@@ -364,12 +365,12 @@ function BrandIntelligenceSection() {
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: i * 0.05 }}
                 tabIndex={0}
-                className={`group relative ${spans[i] ?? ""} min-h-[220px] md:min-h-[260px] bg-background border border-rule rounded-sm p-5 md:p-7 flex flex-col cursor-default transition-all duration-300 hover:-translate-y-1 hover:bg-paper hover:border-mustard hover:shadow-[0_20px_40px_-20px_hsl(var(--ink)/0.15)] focus:outline-none focus:border-mustard`}
+                className={`group relative ${heights[i] ?? "min-h-[260px]"} bg-background border border-rule rounded-sm p-5 flex flex-col cursor-default transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-paper hover:border-mustard hover:shadow-[0_24px_50px_-20px_hsl(var(--ink)/0.18)] hover:z-10 focus:outline-none focus:border-mustard`}
               >
                 <div className="flex items-start justify-between mb-auto">
                   <Icon className="size-5 text-mustard" />
                   {c.metric && (
-                    <span className="font-mono text-[10px] text-mustard tracking-wider">
+                    <span className="font-mono text-[10px] text-mustard tracking-wider text-right">
                       {c.metric}
                     </span>
                   )}
@@ -378,10 +379,10 @@ function BrandIntelligenceSection() {
                   <div className="font-mono text-[10px] tracking-[0.18em] text-olive-soft mb-2">
                     {c.label}
                   </div>
-                  <h4 className="font-display text-xl md:text-2xl text-ink leading-tight mb-2 group-hover:text-mustard transition-colors">
+                  <h4 className="font-display text-lg md:text-xl text-ink leading-tight mb-2 group-hover:text-mustard transition-colors">
                     {c.title}
                   </h4>
-                  <p className="text-[13px] text-muted-foreground leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">
+                  <p className="text-[12px] text-muted-foreground leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">
                     {c.body}
                   </p>
                 </div>
