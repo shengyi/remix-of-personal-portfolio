@@ -468,7 +468,7 @@ function CompareSlider({ before, after, alt }: { before: string; after: string; 
       />
       {/* Before (clipped) */}
       <div
-        className="absolute inset-0 overflow-hidden"
+        className="absolute inset-0 overflow-hidden bg-white"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
         <img
