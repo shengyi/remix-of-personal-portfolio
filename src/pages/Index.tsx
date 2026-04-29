@@ -345,19 +345,29 @@ function BrandIntelligenceSection() {
           lede={brandIntelligence.lede}
         />
 
-        {/* Escalating elevation: cards grow taller from left to right, like a rising bar chart */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-5 items-end">
+        <div className="mb-8 hidden md:block" aria-hidden>
+          <div className="h-1 rounded-full bg-[linear-gradient(90deg,hsl(var(--rule)),hsl(var(--mustard)))]" />
+          <div className="mt-3 grid grid-cols-7 text-[10px] font-mono tracking-[0.16em] text-olive-soft">
+            {cards.map((c, i) => (
+              <span key={c.label} className={i === cards.length - 1 ? "text-right text-mustard" : ""}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Bento/progress layout: roomy cards with a left-to-right sense of compounding momentum */}
+        <div className="grid md:grid-cols-6 gap-4 md:gap-5 items-stretch">
           {cards.map((c, i) => {
             const Icon = intelIcons[c.icon];
-            // Heights step up by index — short on the left, tall on the right
-            const heights = [
-              "min-h-[200px]",
-              "min-h-[230px]",
-              "min-h-[260px]",
-              "min-h-[290px]",
-              "min-h-[320px]",
-              "min-h-[350px]",
-              "min-h-[380px]",
+            const spans = [
+              "md:col-span-2 md:min-h-[240px]",
+              "md:col-span-2 md:min-h-[280px]",
+              "md:col-span-2 md:min-h-[320px]",
+              "md:col-span-3 md:min-h-[250px]",
+              "md:col-span-3 md:min-h-[290px]",
+              "md:col-span-3 md:min-h-[310px]",
+              "md:col-span-3 md:min-h-[350px]",
             ];
             return (
               <motion.article
@@ -365,8 +375,13 @@ function BrandIntelligenceSection() {
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: i * 0.05 }}
                 tabIndex={0}
-                className={`group relative ${heights[i] ?? "min-h-[260px]"} bg-background border border-rule rounded-sm p-5 flex flex-col cursor-default transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-paper hover:border-mustard hover:shadow-[0_24px_50px_-20px_hsl(var(--ink)/0.18)] hover:z-10 focus:outline-none focus:border-mustard`}
+                className={`group relative min-h-[220px] ${spans[i] ?? "md:col-span-2"} bg-background border border-rule rounded-sm p-5 md:p-6 flex flex-col cursor-default transition-all duration-300 hover:-translate-y-1 hover:bg-paper hover:border-mustard hover:shadow-[0_24px_50px_-20px_hsl(var(--ink)/0.18)] focus:outline-none focus:border-mustard`}
               >
+                <div
+                  className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,hsl(var(--rule)),hsl(var(--mustard)))] opacity-60"
+                  style={{ width: `${42 + i * 8}%` }}
+                  aria-hidden
+                />
                 <div className="flex items-start justify-between mb-auto">
                   <Icon className="size-5 text-mustard" />
                   {c.metric && (
@@ -382,7 +397,7 @@ function BrandIntelligenceSection() {
                   <h4 className="font-display text-lg md:text-xl text-ink leading-tight mb-2 group-hover:text-mustard transition-colors">
                     {c.title}
                   </h4>
-                  <p className="text-[12px] text-muted-foreground leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">
+                  <p className="text-[13px] text-muted-foreground leading-relaxed max-w-xl">
                     {c.body}
                   </p>
                 </div>
@@ -453,7 +468,7 @@ function CompareSlider({ before, after, alt }: { before: string; after: string; 
       />
       {/* Before (clipped) */}
       <div
-        className="absolute inset-0 overflow-hidden"
+        className="absolute inset-0 overflow-hidden bg-white"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
         <img
