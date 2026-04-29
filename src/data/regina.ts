@@ -4,11 +4,15 @@
  */
 
 import wpEngineLogo from "@/assets/logos/wp-engine.png";
+import wpEngineLogoDark from "@/assets/logos/wp-engine-dark.png";
 import docusignLogo from "@/assets/logos/docusign.png";
+import docusignLogoDark from "@/assets/logos/docusign-dark.png";
 import godaddyLogo from "@/assets/logos/godaddy.png";
 import natGeoLogo from "@/assets/logos/national-geographic.png";
+import natGeoLogoDark from "@/assets/logos/national-geographic-dark.png";
 import googleLogo from "@/assets/logos/google.png";
 import cesLogo from "@/assets/logos/ces.png";
+import cesLogoDark from "@/assets/logos/ces-dark.png";
 
 import illoMaIntegration from "@/assets/illustrations/ma-brand-integration.png";
 import illoCategoryExpansion from "@/assets/illustrations/category-expansion.png";
@@ -47,12 +51,12 @@ export const profile = {
 };
 
 export const logos = [
-  { name: "WP Engine", src: wpEngineLogo },
-  { name: "DocuSign", src: docusignLogo },
-  { name: "GoDaddy", src: godaddyLogo },
-  { name: "National Geographic", src: natGeoLogo },
-  { name: "Google", src: googleLogo },
-  { name: "CES", src: cesLogo },
+  { name: "WP Engine", src: wpEngineLogo, srcDark: wpEngineLogoDark },
+  { name: "DocuSign", src: docusignLogo, srcDark: docusignLogoDark },
+  { name: "GoDaddy", src: godaddyLogo, srcDark: godaddyLogo },
+  { name: "National Geographic", src: natGeoLogo, srcDark: natGeoLogoDark },
+  { name: "Google", src: googleLogo, srcDark: googleLogo },
+  { name: "CES", src: cesLogo, srcDark: cesLogoDark },
 ];
 
 export type Case = {
